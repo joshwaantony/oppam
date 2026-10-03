@@ -1,9 +1,17 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
+import { Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-sans',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
-  title: 'Oppam Care | Elder Care Assistance in Alappuzha',
+  title: 'Oppam Care | Elder Care Assistance & Companionship in Alappuzha',
   description: 'Trusted personal assistance and companionship for elderly parents and loved ones in Alappuzha — when you cannot be there in person.',
   generator: 'v0.app',
   icons: {
@@ -35,8 +43,8 @@ export const viewport: Viewport = {
   userScalable: false,
   colorScheme: 'light',
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
+    { media: '(prefers-color-scheme: light)', color: '#F8F6EE' },
+    { media: '(prefers-color-scheme: dark)', color: '#075C42' },
   ],
 }
 
@@ -46,11 +54,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased">
+    <html lang="en" className={`${plusJakartaSans.variable} scroll-smooth`}>
+      <body className={`${plusJakartaSans.className} antialiased bg-[#F8F6EE] text-[#123D32] selection:bg-[#8DBB4D]/30 selection:text-[#075C42]`}>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )
 }
+

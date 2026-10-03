@@ -45,6 +45,15 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+@keyframes float-subtle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
 :root {
   color-scheme: light;
   --background: oklch(1 0 0);

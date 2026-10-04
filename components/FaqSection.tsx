@@ -167,22 +167,10 @@ export const faqData: FAQItem[] = [
 ]
 
 export function FaqSection() {
-  const [openIds, setOpenIds] = useState<number[]>([1])
+  const [openId, setOpenId] = useState<number | null>(1)
 
   const toggleItem = (id: number) => {
-    setOpenIds((prev) =>
-      prev.includes(id) ? prev.filter((openId) => openId !== id) : [...prev, id]
-    )
-  }
-
-  const allExpanded = faqData.length > 0 && faqData.every((item) => openIds.includes(item.id))
-
-  const toggleAll = () => {
-    if (allExpanded) {
-      setOpenIds([])
-    } else {
-      setOpenIds(faqData.map((item) => item.id))
-    }
+    setOpenId((prev) => (prev === id ? null : id))
   }
 
   return (
@@ -205,15 +193,17 @@ export function FaqSection() {
         {/* Minimal Bar */}
         <div className="mb-4 flex items-center justify-between border-b border-[#F0F5EE] pb-3 text-xs text-[#557366]">
           <span className="font-semibold text-[#123D32]">
-            Questions & Answers ({faqData.length})
+            Questions &amp; Answers ({faqData.length})
           </span>
-          <button
-            type="button"
-            onClick={toggleAll}
-            className="cursor-pointer font-semibold text-[#075C42] transition hover:text-[#054631] hover:underline"
-          >
-            {allExpanded ? 'Collapse all' : 'Expand all'}
-          </button>
+          {openId !== null && (
+            <button
+              type="button"
+              onClick={() => setOpenId(null)}
+              className="cursor-pointer font-semibold text-[#075C42] transition hover:text-[#054631] hover:underline"
+            >
+              Collapse
+            </button>
+          )}
         </div>
 
         {/* Scrollable Container with custom scrollbar */}
@@ -222,7 +212,7 @@ export function FaqSection() {
           className="max-h-[480px] space-y-2.5 overflow-y-auto pr-2 sm:pr-3 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-[#F4F7F2] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#A3CE83] hover:[&::-webkit-scrollbar-thumb]:bg-[#075C42]"
         >
           {faqData.map((item) => {
-            const isOpen = openIds.includes(item.id)
+            const isOpen = openId === item.id
             return (
               <div
                 key={item.id}

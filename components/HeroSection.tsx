@@ -1,20 +1,16 @@
 'use client'
 
 import React from 'react'
-import { ArrowRight } from 'lucide-react'
-import { WhatsAppIcon } from './icons/WhatsAppIcon'
 import { HandDrawnHeart, HandDrawnUnderline } from './hero/HandDrawnDetails'
 import { BenefitPills } from './hero/BenefitPills'
 import { OrganicHeroArtwork } from './hero/OrganicHeroArtwork'
-
-const whatsappUrl =
-  'https://wa.me/919074025279?text=Hello%2C%20I%20would%20like%20to%20request%20elder%20care%20assistance%20in%20Alappuzha.'
+import { TopRightLeaves, ForegroundBokehLeaves } from './hero/DecorativeLeaves'
 
 interface HeroSectionProps {
   /**
    * Headline variant:
-   * 'home'   -> "Care / that feels / like home." (Exact reference design)
-   * 'beyond' -> "Care / beyond / distance."
+   * 'home'   -> "Care / that feels / like home. ♡" (Exact reference design)
+   * 'beyond' -> "Care / beyond / distance. ♡"
    */
   headlineVariant?: 'home' | 'beyond'
 }
@@ -23,118 +19,107 @@ export function HeroSection({ headlineVariant = 'home' }: HeroSectionProps) {
   return (
     <section
       id="top"
-      className="relative flex min-h-[calc(100vh-80px)] w-full items-center overflow-hidden bg-[#F8F6EE] px-6 py-10 sm:py-14 lg:px-12 lg:py-16"
+      className="relative flex w-full flex-col justify-center overflow-hidden bg-[#F8F9F3] px-4.5 py-6 sm:px-8 sm:py-10 lg:min-h-[calc(100vh-80px)] lg:px-12 lg:py-16 xl:px-16 xl:py-20"
     >
-      {/* Soft ambient botanical aura in upper-right */}
+      {/* Soft ambient botanical aura behind the artwork */}
       <div
-        className="pointer-events-none absolute -right-20 -top-20 h-[520px] w-[520px] rounded-full bg-[#E3EFE0]/60 blur-[90px]"
+        className="pointer-events-none absolute -right-20 -top-20 h-[480px] w-[480px] rounded-full bg-[#E5F2E3]/70 blur-[90px] lg:h-[640px] lg:w-[640px] lg:blur-[110px]"
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute bottom-0 left-10 h-[360px] w-[360px] rounded-full bg-[#EBF4E8]/50 blur-[80px]"
+        className="pointer-events-none absolute bottom-0 left-4 h-[240px] w-[240px] rounded-full bg-[#EEF6EC]/60 blur-[70px] lg:left-10 lg:h-[360px] lg:w-[360px] lg:blur-[90px]"
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto w-full max-w-[1280px]">
-        <div className="grid items-center gap-12 lg:grid-cols-[45%_55%] lg:gap-6 xl:grid-cols-[44%_56%]">
+      {/* Top-Right Leaves: Enters from the right edge in mobile and top-right in desktop */}
+      <TopRightLeaves className="top-24 sm:top-16 lg:top-0" />
+
+      {/* Foreground Blurred Bokeh Leaves at bottom right */}
+      <ForegroundBokehLeaves />
+
+      <div className="relative mx-auto w-full max-w-[1320px]">
+        <div className="grid w-full min-w-0 items-center gap-6 sm:gap-8 lg:grid-cols-[45%_55%] lg:gap-8 xl:grid-cols-[44%_56%]">
           
           {/* ========================================================
-              LEFT COLUMN (44% width): Content & Typography
+              LEFT COLUMN: Typography (and Desktop Badges)
              ======================================================== */}
-          <div className="relative z-10 flex flex-col items-start pt-2 lg:pt-0">
+          <div className="relative z-10 flex min-w-0 flex-col items-start pt-1 sm:pt-2 lg:pt-0">
             
-            {/* TOP LABEL: Gold line + ELDER CARE ASSISTANCE · ALAPPUZHA */}
-            <div className="flex items-center gap-3">
-              <span className="h-[1.5px] w-10 sm:w-12 bg-[#C88A16]" aria-hidden="true" />
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#C88A16] sm:text-[13px]">
+            {/* 1. TOP LABEL: Gold line + ELDER CARE ASSISTANCE · ALAPPUZHA */}
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              <span className="h-[1.5px] w-8 sm:w-11 bg-[#C58A3E]" aria-hidden="true" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#C58A3E] sm:text-xs lg:text-[13px]">
                 ELDER CARE ASSISTANCE · ALAPPUZHA
               </span>
             </div>
 
-            {/* MAIN HEADLINE: Bold 3-line headline with hand-drawn details */}
-            <h1 className="mt-7 text-[3.25rem] font-extrabold leading-[1.0] tracking-[-0.035em] sm:text-6xl md:text-7xl lg:text-[4.75rem] xl:text-[5.35rem]">
+            {/* 2. MAIN HEADLINE: Bold 3-line headline with hand-drawn details */}
+            <h1 className="mt-3.5 text-[2.5rem] font-extrabold leading-[1.02] tracking-[-0.035em] xs:text-[2.85rem] sm:mt-6 sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5.25rem]">
               {headlineVariant === 'home' ? (
                 <>
-                  <span className="block text-[#075C42]">Care</span>
-                  <span className="block text-[#075C42]">that feels</span>
-                  <span className="relative inline-block text-[#7EA83D]">
-                    like home.
-                    {/* Hand-drawn curved underline brush stroke */}
-                    <span className="absolute -bottom-3.5 left-0 w-full">
-                      <HandDrawnUnderline />
+                  <span className="block text-[#134E39]">Care</span>
+                  <span className="block text-[#134E39]">that feels</span>
+                  <span className="relative mt-0.5 sm:mt-1 inline-flex items-baseline text-[#6FA63A]">
+                    <span className="relative inline-block">
+                      like home.
+                      {/* Hand-drawn curved underline brush stroke */}
+                      <span className="absolute -bottom-2 left-0 w-full sm:-bottom-3">
+                        <HandDrawnUnderline />
+                      </span>
                     </span>
-                    {/* Hand-drawn outlined heart detail */}
-                    <span className="absolute -right-9 -top-1 sm:-right-11 sm:-top-2">
-                      <HandDrawnHeart className="h-7 w-7 sm:h-9 sm:w-9" />
-                    </span>
+                    {/* Hand-drawn heart outline right beside the period */}
+                    <HandDrawnHeart className="ml-1.5 h-6 w-6 xs:h-7 xs:w-7 sm:ml-2.5 sm:h-7 sm:w-7 lg:h-8 lg:w-8 translate-y-1" />
                   </span>
                 </>
               ) : (
                 <>
-                  <span className="block text-[#075C42]">Care</span>
-                  <span className="block text-[#7EA83D]">beyond</span>
-                  <span className="relative inline-block text-[#075C42]">
-                    distance.
-                    {/* Hand-drawn curved underline brush stroke */}
-                    <span className="absolute -bottom-3.5 left-0 w-full">
-                      <HandDrawnUnderline />
+                  <span className="block text-[#134E39]">Care</span>
+                  <span className="block text-[#6FA63A]">beyond</span>
+                  <span className="relative mt-0.5 sm:mt-1 inline-flex items-baseline text-[#134E39]">
+                    <span className="relative inline-block">
+                      distance.
+                      <span className="absolute -bottom-2 left-0 w-full sm:-bottom-3">
+                        <HandDrawnUnderline />
+                      </span>
                     </span>
-                    {/* Hand-drawn outlined heart detail */}
-                    <span className="absolute -right-9 -top-1 sm:-right-11 sm:-top-2">
-                      <HandDrawnHeart className="h-7 w-7 sm:h-9 sm:w-9" />
-                    </span>
+                    <HandDrawnHeart className="ml-1.5 h-6 w-6 xs:h-7 xs:w-7 sm:ml-2.5 sm:h-7 sm:w-7 lg:h-8 lg:w-8 translate-y-1" />
                   </span>
                 </>
               )}
             </h1>
 
-            {/* CTA BUTTONS: Request assistance + WhatsApp us */}
-            <div className="mt-11 flex flex-col gap-4 sm:flex-row sm:items-center">
-              {/* Primary: Request assistance */}
-              <a
-                href="#request"
-                className="group inline-flex h-14 items-center justify-center gap-2.5 rounded-full bg-[#075C42] px-8 text-[15px] font-semibold tracking-wide text-white shadow-[0_12px_28px_rgba(7,92,66,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#054631] hover:shadow-[0_16px_34px_rgba(7,92,66,0.36)]"
-              >
-                <span>Request assistance</span>
-                <ArrowRight
-                  size={18}
-                  strokeWidth={2.4}
-                  className="transition-transform duration-200 group-hover:translate-x-1"
-                />
-              </a>
+            {/* 3. SUBTITLE: Compassionate support for your loved ones... */}
+            <p className="mt-3.5 max-w-sm text-[13.5px] leading-relaxed text-[#4A5A50] xs:text-sm sm:mt-6 sm:max-w-md sm:text-base lg:text-[1.125rem]">
+              Compassionate support for your loved ones,<br className="hidden sm:inline" />
+              right here in Alappuzha.
+            </p>
 
-              {/* Secondary: WhatsApp us */}
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex h-14 items-center justify-center gap-2.5 rounded-full border-[1.5px] border-[#7EA83D] bg-white px-7 text-[15px] font-semibold tracking-wide text-[#075C42] shadow-2xs transition-all duration-300 hover:-translate-y-0.5 hover:border-[#075C42] hover:bg-[#F6FAF4] hover:shadow-xs"
-              >
-                <WhatsAppIcon
-                  size={21}
-                  className="text-[#25D366] transition-transform duration-200 group-hover:scale-110"
-                />
-                <span>WhatsApp us</span>
-              </a>
-            </div>
-
-            {/* BOTTOM BENEFITS: Three minimal circular icons */}
-            <div className="mt-11 sm:mt-12">
-              <BenefitPills showLabels={false} />
+            {/* 4. THREE BENEFIT BADGES: DESKTOP ONLY (Below subtitle) */}
+            <div className="hidden lg:block mt-10 xl:mt-12">
+              <BenefitPills />
             </div>
 
           </div>
 
           {/* ========================================================
-              RIGHT COLUMN (55% width): Coded Organic Artwork & Photo
+              RIGHT COLUMN: Coded Organic Pebble Frame Artwork & Mobile Badges
              ======================================================== */}
-          <OrganicHeroArtwork />
+          <div className="w-full min-w-0 flex flex-col items-center">
+            {/* The Photo Artwork (Centered) */}
+            <div className="w-full mt-2 sm:mt-4 lg:mt-0">
+              <OrganicHeroArtwork />
+            </div>
+
+            {/* 5. THREE BENEFIT BADGES: MOBILE ONLY (Below Photo Artwork) */}
+            <div className="mt-6 sm:mt-8 flex justify-center w-full max-w-[340px] xs:max-w-[360px] mx-auto lg:hidden">
+              <BenefitPills />
+            </div>
+          </div>
 
         </div>
       </div>
     </section>
   )
 }
-
 
 export default HeroSection

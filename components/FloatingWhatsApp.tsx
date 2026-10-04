@@ -4,7 +4,7 @@ import React from 'react'
 import { WhatsAppIcon } from './icons/WhatsAppIcon'
 
 const whatsappUrl =
-  'https://wa.me/919074025279?text=Hello%2C%20I%20would%20like%20to%20request%20elder%20care%20assistance%20in%20Alappuzha.'
+  'https://wa.me/918301016493?text=Hello%2C%20I%20would%20like%20to%20request%20elder%20care%20assistance%20in%20Alappuzha.'
 
 export function FloatingWhatsApp() {
   return (

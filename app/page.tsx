@@ -20,9 +20,9 @@ import { FloatingWhatsApp } from '@/components/FloatingWhatsApp'
 import { WhatsAppIcon } from '@/components/WhatsAppIcon'
 import { FaqSection } from '@/components/FaqSection'
 
-const phoneNumber = '+91 90740 25279'
+const phoneNumber = '+91 83010 16493'
 const whatsappUrl =
-  'https://wa.me/919074025279?text=Hello%2C%20I%20would%20like%20to%20request%20elder%20care%20assistance%20in%20Alappuzha.'
+  'https://wa.me/918301016493?text=Hello%2C%20I%20would%20like%20to%20request%20elder%20care%20assistance%20in%20Alappuzha.'
 
 const services = [
   { icon: Hospital, title: 'Hospital visit assistance', text: 'Accompaniment and practical support during hospital visits.' },
@@ -56,7 +56,7 @@ export default function Page() {
     ].filter(Boolean)
 
     const message = lines.join('\n')
-    const targetUrl = `https://wa.me/919074025279?text=${encodeURIComponent(message)}`
+    const targetUrl = `https://wa.me/918301016493?text=${encodeURIComponent(message)}`
 
     // Open WhatsApp directly
     const opened = window.open(targetUrl, '_blank')
@@ -227,7 +227,7 @@ export default function Page() {
               Share a few details and our team will get back to you. Your information is used only to coordinate your request.
             </p>
             <div className="mt-8 flex flex-col gap-4 text-sm font-semibold text-[#123D32]">
-              <a href="tel:+919074025279" className="flex items-center gap-3 transition hover:text-[#075C42]">
+              <a href="tel:+918301016493" className="flex items-center gap-3 transition hover:text-[#075C42]">
                 <Phone size={18} className="text-[#075C42]" /> {phoneNumber}
               </a>
               <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition hover:text-[#075C42]">

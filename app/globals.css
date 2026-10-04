@@ -54,6 +54,11 @@
   }
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 :root {
   color-scheme: light;
   --background: oklch(1 0 0);

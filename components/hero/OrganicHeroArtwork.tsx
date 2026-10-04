@@ -1,102 +1,87 @@
 'use client'
 
 import React from 'react'
-import { FloatingTrustCard } from './FloatingTrustCard'
 import {
-  TopRightLeaves,
-  BottomLeftLeaves,
-  CurvedBotanicalLine,
-  ForegroundBokehLeaves,
+  BotanicalContourLine,
+  BottomSproutLeaves,
 } from './DecorativeLeaves'
 
 export function OrganicHeroArtwork() {
   return (
-    <div className="relative mx-auto flex w-full max-w-[580px] items-center justify-center lg:ml-auto lg:max-w-none">
-      <div className="relative w-full max-w-[560px] xl:max-w-[590px]">
+    <div className="relative mx-auto flex w-full max-w-[315px] xs:max-w-[345px] sm:max-w-[440px] lg:max-w-none items-center justify-center">
+      <div className="relative w-full max-w-[315px] xs:max-w-[345px] sm:max-w-[440px] lg:max-w-[580px] xl:max-w-[640px]">
         
-        {/* ========================================================
-            1. Organic Framed Photo via Scalable SVG Vector Paths
-           ======================================================== */}
-        <div className="relative w-full transition-transform duration-700 ease-out hover:scale-[1.015]">
+        {/* Fine Botanical Contour Lines */}
+        <BotanicalContourLine />
+
+        {/* Multi-Layered Organic Framed Photo */}
+        <div className="relative w-full transition-transform duration-700 ease-out hover:scale-[1.01]">
           <svg
-            viewBox="0 0 600 500"
-            className="w-full h-auto drop-shadow-[0_20px_45px_rgba(7,92,66,0.15)]"
+            viewBox="0 0 660 480"
+            className="h-auto w-full drop-shadow-[0_16px_36px_rgba(18,78,57,0.12)] sm:drop-shadow-[0_20px_45px_rgba(18,78,57,0.12)]"
             xmlns="http://www.w3.org/2000/svg"
           >
             <defs>
-              {/* Outer Pale Sage Gradient Halo matching reference #DCEBD5 */}
-              <linearGradient id="sageHaloGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#E2EFE0" />
-                <stop offset="45%" stopColor="#DCEBD5" />
-                <stop offset="100%" stopColor="#CDE4C2" />
+              {/* Outer organic petal aura gradient */}
+              <linearGradient id="outerPetalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#EBF5EA" stopOpacity="0.9" />
+                <stop offset="60%" stopColor="#DFEFE0" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#D4EAD7" stopOpacity="0.7" />
               </linearGradient>
 
-              {/* Precise Organic Curved Clip Path for the Photograph */}
-              <clipPath id="heroOrganicPhotoClip">
-                <path d="M 280,38 C 395,30 488,78 528,168 C 564,248 544,352 468,414 C 398,468 258,464 158,422 C 62,382 48,286 64,215 C 80,135 168,44 280,38 Z" />
-              </clipPath>
+              {/* Main Frame Border Gradient */}
+              <linearGradient id="frameBorderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#E4F1E3" />
+                <stop offset="50%" stopColor="#CFE7D1" />
+                <stop offset="100%" stopColor="#C4E0C7" />
+              </linearGradient>
 
-              {/* Soft Drop Shadow for the Outer Frame */}
-              <filter id="haloShadowFilter" x="-15%" y="-15%" width="130%" height="130%">
-                <feDropShadow dx="0" dy="16" stdDeviation="16" floodColor="#075C42" floodOpacity="0.12" />
-              </filter>
+              {/* Precise Organic Curved Clip Path for Photograph */}
+              <clipPath id="heroOrganicPhotoClip">
+                <path d="M 280,38 C 420,24 530,70 585,155 C 630,225 620,335 545,405 C 475,470 310,475 195,435 C 90,398 65,295 82,210 C 98,125 175,48 280,38 Z" />
+              </clipPath>
             </defs>
 
-            {/* Outer Pale Sage-Green Organic Border/Frame */}
+            {/* Layer 1: Left Organic Crescent Petal / Echo Aura (matching reference image) */}
             <path
-              d="M 280,18 C 405,10 508,62 550,158 C 588,242 566,364 484,432 C 410,488 254,484 144,440 C 44,396 28,292 46,212 C 64,124 158,26 280,18 Z"
-              fill="url(#sageHaloGradient)"
-              filter="url(#haloShadowFilter)"
+              d="M 240,28 C 120,40 14,125 14,238 C 14,350 110,432 230,458 C 148,408 98,322 106,230 C 114,144 162,65 240,28 Z"
+              fill="url(#outerPetalGradient)"
             />
 
-            {/* Raw Photograph clipped inside the organic curve */}
+            {/* Layer 2: Main Organic Frame Solid Border Rim */}
+            <path
+              d="M 280,38 C 420,24 530,70 585,155 C 630,225 620,335 545,405 C 475,470 310,475 195,435 C 90,398 65,295 82,210 C 98,125 175,48 280,38 Z"
+              fill="none"
+              stroke="url(#frameBorderGradient)"
+              strokeWidth="20"
+              strokeLinejoin="round"
+            />
+
+            {/* Layer 3: Clipped Photograph shifted upwards inside the frame */}
             <g clipPath="url(#heroOrganicPhotoClip)">
               <image
                 href="/oppam-care-hero.png"
-                x="30"
-                y="-30"
-                width="560"
-                height="560"
-                preserveAspectRatio="xMidYMid slice"
+                x="15"
+                y="-345"
+                width="660"
+                height="1182.5"
+                preserveAspectRatio="none"
               />
             </g>
+
+            {/* Layer 4: Delicate Inner Highlight Rim */}
+            <path
+              d="M 280,38 C 420,24 530,70 585,155 C 630,225 620,335 545,405 C 475,470 310,475 195,435 C 90,398 65,295 82,210 C 98,125 175,48 280,38 Z"
+              fill="none"
+              stroke="#FFFFFF"
+              strokeWidth="1.5"
+              strokeOpacity="0.45"
+            />
           </svg>
         </div>
 
-        {/* ========================================================
-            2. Floating White Trust Card (Upper Right)
-           ======================================================== */}
-        <div className="absolute top-10 right-2 sm:top-14 sm:right-4 lg:top-16 lg:-right-3 xl:top-20 xl:-right-5 z-20">
-          <FloatingTrustCard />
-        </div>
-
-        {/* ========================================================
-            3. Top Right Botanical Leaves
-           ======================================================== */}
-        <div className="absolute -right-2 -top-6 sm:-right-4 sm:-top-8 lg:-right-6 lg:-top-10 z-20">
-          <TopRightLeaves />
-        </div>
-
-        {/* ========================================================
-            4. Bottom Left Botanical Leaves
-           ======================================================== */}
-        <div className="absolute -bottom-3 -left-4 sm:-bottom-5 sm:-left-6 lg:-bottom-6 lg:-left-8 z-20">
-          <BottomLeftLeaves />
-        </div>
-
-        {/* ========================================================
-            5. Thin Curved Botanical Contour Line
-           ======================================================== */}
-        <div className="pointer-events-none absolute -bottom-8 -left-10 h-28 w-56 z-10">
-          <CurvedBotanicalLine className="h-full w-full" />
-        </div>
-
-        {/* ========================================================
-            6. Cinematic Blurred Foreground Leaves (Bottom Right)
-           ======================================================== */}
-        <div className="pointer-events-none absolute -bottom-6 -right-6 z-30">
-          <ForegroundBokehLeaves />
-        </div>
+        {/* Bottom Sprout Accent peeking below pebble frame */}
+        <BottomSproutLeaves className="bottom-4 left-16 sm:bottom-7 sm:left-36" />
 
       </div>
     </div>

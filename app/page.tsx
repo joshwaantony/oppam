@@ -150,8 +150,11 @@ export default function Page() {
         <div className="relative overflow-hidden rounded-[2.2rem] border border-[#C88A16]/30 bg-[#DCEBD5] p-3 shadow-[0_20px_50px_rgba(7,92,66,0.12)]">
           <img
             src="/oppam-care-family.png"
-            alt="Elderly Malayali woman supported on a traditional Kerala veranda"
+            alt="Elderly Malayali parent supported on a traditional Kerala veranda by Oppam Care companion"
             className="aspect-[0.9] w-full rounded-[1.8rem] object-cover"
+            width={540}
+            height={600}
+            loading="lazy"
           />
         </div>
         <div>
@@ -317,7 +320,13 @@ export default function Page() {
         <div className="mx-auto flex max-w-[1280px] flex-col justify-between gap-10 sm:flex-row">
           <div className="max-w-sm">
             <div className="mb-5 flex size-14 items-center justify-center rounded-xl bg-white p-1">
-              <img src="/oppam-care-logo.png" alt="Oppam Care logo" className="h-full w-full object-contain" />
+              <img
+                src="/oppam-care-logo.png"
+                alt="Oppam Care elder care assistance logo Alappuzha"
+                className="h-full w-full object-contain"
+                width={56}
+                height={56}
+              />
             </div>
             <p className="leading-7 text-white/80">
               Personal assistance and companionship for elderly parents and loved ones in Alappuzha.

@@ -31,8 +31,10 @@ export function Navbar() {
             <div className="flex size-10 sm:size-11 items-center justify-center rounded-xl bg-white/90 p-1 shadow-2xs ring-1 ring-[#075C42]/10 transition group-hover:scale-105">
               <img
                 src="/oppam-care-logo.png"
-                alt="Oppam Care logo"
+                alt="Oppam Care elder care assistance logo Alappuzha"
                 className="h-full w-full object-contain"
+                width={44}
+                height={44}
               />
             </div>
             <div className="flex flex-col">

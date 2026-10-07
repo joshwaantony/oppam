@@ -11,8 +11,26 @@ import { ShieldCheck, AlertCircle, FileText, Phone, ArrowLeft, CheckCircle2 } fr
 export default function TermsPage() {
   const lastUpdated = 'October 7, 2026'
 
+  const termsSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': 'https://oppamcare.com/terms#webpage',
+    url: 'https://oppamcare.com/terms',
+    name: 'Terms & Conditions | Oppam Care Alappuzha',
+    description:
+      'Terms and Conditions for Oppam Care non-medical personal elder care assistance and companionship services in Alappuzha, Kerala.',
+    isPartOf: {
+      '@type': 'WebSite',
+      '@id': 'https://oppamcare.com/#website',
+    },
+  }
+
   return (
     <main className="min-h-screen w-full bg-[#F8F9F3] text-[#123D32]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(termsSchema) }}
+      />
       {/* Header / Navbar */}
       <Navbar />
 
@@ -263,7 +281,13 @@ export default function TermsPage() {
         <div className="mx-auto flex max-w-[1280px] flex-col justify-between gap-10 sm:flex-row">
           <div className="max-w-sm">
             <div className="mb-5 flex size-14 items-center justify-center rounded-xl bg-white p-1">
-              <img src="/oppam-care-logo.png" alt="Oppam Care logo" className="h-full w-full object-contain" />
+              <img
+                src="/oppam-care-logo.png"
+                alt="Oppam Care elder care assistance logo Alappuzha"
+                className="h-full w-full object-contain"
+                width={56}
+                height={56}
+              />
             </div>
             <p className="leading-7 text-white/80">
               Personal assistance and companionship for elderly parents and loved ones in Alappuzha.

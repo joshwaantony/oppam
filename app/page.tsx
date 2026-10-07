@@ -18,6 +18,8 @@ import { Navbar } from '@/components/Navbar'
 import { HeroSection } from '@/components/HeroSection'
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp'
 import { WhatsAppIcon } from '@/components/WhatsAppIcon'
+import { InstagramIcon } from '@/components/icons/InstagramIcon'
+import { FacebookIcon } from '@/components/icons/FacebookIcon'
 import { FaqSection } from '@/components/FaqSection'
 
 const phoneNumber = '+91 83010 16493'
@@ -320,18 +322,53 @@ export default function Page() {
             <p className="leading-7 text-white/80">
               Personal assistance and companionship for elderly parents and loved ones in Alappuzha.
             </p>
+            {/* Social Media Links */}
+            <div className="mt-6 flex items-center gap-3">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Connect on WhatsApp"
+                className="flex size-10 items-center justify-center rounded-full bg-white/10 text-white/90 transition hover:bg-[#25D366] hover:text-white hover:scale-105"
+              >
+                <WhatsAppIcon size={20} />
+              </a>
+              <a
+                href="https://www.instagram.com/oppam.2026?stkn=MXczYmhucTc3ZWp6OQ=="
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow us on Instagram"
+                className="flex size-10 items-center justify-center rounded-full bg-white/10 text-white/90 transition hover:bg-[#E4405F] hover:text-white hover:scale-105"
+              >
+                <InstagramIcon size={20} />
+              </a>
+              <a
+                href="https://www.facebook.com/share/1CCMqoyrcb/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow us on Facebook"
+                className="flex size-10 items-center justify-center rounded-full bg-white/10 text-white/90 transition hover:bg-[#1877F2] hover:text-white hover:scale-105"
+              >
+                <FacebookIcon size={20} />
+              </a>
+            </div>
           </div>
           <div className="grid gap-3 text-sm font-medium sm:grid-cols-2">
             <a href="#services" className="hover:text-white">Services</a>
             <a href="#process" className="hover:text-white">How it works</a>
             <a href="#families" className="hover:text-white">Families abroad</a>
             <a href="#faq" className="hover:text-white">FAQ</a>
+            <a href="/terms" className="hover:text-white">Terms & Conditions</a>
             <a href="#request" className="hover:text-white">Contact us</a>
           </div>
         </div>
         <div className="mx-auto mt-12 flex max-w-[1280px] flex-col gap-2 border-t border-white/15 pt-6 text-xs sm:flex-row sm:justify-between text-white/60">
           <span>© 2026 Oppam Care. All rights reserved.</span>
-          <span>Alappuzha, Kerala · Non-medical personal elder care assistance</span>
+          <div className="flex gap-4 items-center">
+            <a href="/terms" className="underline hover:text-white">Terms & Conditions</a>
+            <span>·</span>
+            <span>Alappuzha, Kerala · Non-medical personal elder care assistance</span>
+          </div>
         </div>
       </footer>
 

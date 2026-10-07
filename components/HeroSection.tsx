@@ -19,7 +19,7 @@ export function HeroSection({ headlineVariant = 'home' }: HeroSectionProps) {
   return (
     <section
       id="top"
-      className="relative flex w-full flex-col justify-center overflow-hidden bg-[#F8F9F3] px-4.5 py-6 sm:px-8 sm:py-10 lg:min-h-[calc(100vh-80px)] lg:px-12 lg:py-16 xl:px-16 xl:py-20"
+      className="relative flex w-full flex-col justify-center overflow-hidden bg-[#F8F9F3] py-6 sm:py-10 lg:min-h-[calc(100vh-80px)] lg:py-16 xl:py-20"
     >
       {/* Soft ambient botanical aura behind the artwork */}
       <div
@@ -37,7 +37,7 @@ export function HeroSection({ headlineVariant = 'home' }: HeroSectionProps) {
       {/* Foreground Blurred Bokeh Leaves at bottom right */}
       <ForegroundBokehLeaves />
 
-      <div className="relative mx-auto w-full max-w-[1320px]">
+      <div className="relative mx-auto w-full max-w-[1280px] px-4 sm:px-6 lg:px-10">
         <div className="grid w-full min-w-0 items-center gap-6 sm:gap-8 lg:grid-cols-[45%_55%] lg:gap-8 xl:grid-cols-[44%_56%]">
           
           {/* ========================================================

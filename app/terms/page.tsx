@@ -6,7 +6,7 @@ import { FloatingWhatsApp } from '@/components/FloatingWhatsApp'
 import { WhatsAppIcon } from '@/components/WhatsAppIcon'
 import { InstagramIcon } from '@/components/icons/InstagramIcon'
 import { FacebookIcon } from '@/components/icons/FacebookIcon'
-import { ShieldCheck, AlertCircle, FileText, Phone, ArrowLeft, CheckCircle2 } from 'lucide-react'
+import { ShieldCheck, AlertCircle, FileText, Phone, ArrowLeft, CheckCircle2, Mail, MapPin } from 'lucide-react'
 
 export default function TermsPage() {
   const lastUpdated = 'October 7, 2026'
@@ -238,6 +238,12 @@ export default function TermsPage() {
                 <a href="tel:+918301016493" className="flex items-center gap-3 text-[#075C42] hover:underline">
                   <Phone size={18} /> +91 83010 16493
                 </a>
+                <a href="mailto:oppamcare@gmail.com" className="flex items-center gap-3 text-[#075C42] hover:underline">
+                  <Mail size={18} /> oppamcare@gmail.com
+                </a>
+                <span className="flex items-center gap-3 text-[#123D32]">
+                  <MapPin size={18} className="text-[#075C42] shrink-0" /> Pathirapally P.O, Alappuzha - 688521, Kerala
+                </span>
               </div>
             </article>
 
@@ -295,6 +301,13 @@ export default function TermsPage() {
             {/* Social Media Links */}
             <div className="mt-6 flex items-center gap-3">
               <a
+                href="mailto:oppamcare@gmail.com"
+                aria-label="Send email to Oppam Care"
+                className="flex size-10 items-center justify-center rounded-full bg-white/10 text-white/90 transition hover:bg-[#C58A3E] hover:text-white hover:scale-105"
+              >
+                <Mail size={19} />
+              </a>
+              <a
                 href="https://wa.me/918301016493?text=Hello%2C%20I%20would%20like%20to%20request%20elder%20care%20assistance%20in%20Alappuzha."
                 target="_blank"
                 rel="noopener noreferrer"
@@ -332,12 +345,14 @@ export default function TermsPage() {
             <a href="/#request" className="hover:text-white">Contact us</a>
           </div>
         </div>
-        <div className="mx-auto mt-12 flex max-w-[1280px] flex-col gap-2 border-t border-white/15 pt-6 text-xs sm:flex-row sm:justify-between text-white/60">
+        <div className="mx-auto mt-12 flex max-w-[1280px] flex-col gap-3 border-t border-white/15 pt-6 text-xs sm:flex-row sm:justify-between text-white/60">
           <span>© 2026 Oppam Care. All rights reserved.</span>
-          <div className="flex gap-4 items-center">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 items-center">
             <a href="/terms" className="underline hover:text-white">Terms & Conditions</a>
             <span>·</span>
-            <span>Alappuzha, Kerala · Non-medical personal elder care assistance</span>
+            <a href="mailto:oppamcare@gmail.com" className="hover:text-white underline">oppamcare@gmail.com</a>
+            <span>·</span>
+            <span>Pathirapally P O, Alappuzha - 688521, Kerala</span>
           </div>
         </div>
       </footer>

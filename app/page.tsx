@@ -9,6 +9,8 @@ import {
   HeartHandshake,
   Hospital,
   House,
+  Mail,
+  MapPin,
   Phone,
   ShieldCheck,
   Stethoscope,
@@ -238,6 +240,12 @@ export default function Page() {
               <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition hover:text-[#075C42]">
                 <WhatsAppIcon size={18} className="text-[#25D366]" /> WhatsApp: {phoneNumber}
               </a>
+              <a href="mailto:oppamcare@gmail.com" className="flex items-center gap-3 transition hover:text-[#075C42]">
+                <Mail size={18} className="text-[#075C42]" /> oppamcare@gmail.com
+              </a>
+              <span className="flex items-center gap-3 font-semibold text-[#123D32]">
+                <MapPin size={18} className="text-[#075C42] shrink-0" /> Pathirapally P.O, Alappuzha - 688521, Kerala
+              </span>
               <span className="flex items-center gap-3 text-xs font-medium text-[#557366]">
                 <Clock3 size={18} className="text-[#075C42]" /> Service availability confirmed before every booking
               </span>
@@ -334,6 +342,13 @@ export default function Page() {
             {/* Social Media Links */}
             <div className="mt-6 flex items-center gap-3">
               <a
+                href="mailto:oppamcare@gmail.com"
+                aria-label="Send email to Oppam Care"
+                className="flex size-10 items-center justify-center rounded-full bg-white/10 text-white/90 transition hover:bg-[#C58A3E] hover:text-white hover:scale-105"
+              >
+                <Mail size={19} />
+              </a>
+              <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -371,12 +386,14 @@ export default function Page() {
             <a href="#request" className="hover:text-white">Contact us</a>
           </div>
         </div>
-        <div className="mx-auto mt-12 flex max-w-[1280px] flex-col gap-2 border-t border-white/15 pt-6 text-xs sm:flex-row sm:justify-between text-white/60">
+        <div className="mx-auto mt-12 flex max-w-[1280px] flex-col gap-3 border-t border-white/15 pt-6 text-xs sm:flex-row sm:justify-between text-white/60">
           <span>© 2026 Oppam Care. All rights reserved.</span>
-          <div className="flex gap-4 items-center">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 items-center">
             <a href="/terms" className="underline hover:text-white">Terms & Conditions</a>
             <span>·</span>
-            <span>Alappuzha, Kerala · Non-medical personal elder care assistance</span>
+            <a href="mailto:oppamcare@gmail.com" className="hover:text-white underline">oppamcare@gmail.com</a>
+            <span>·</span>
+            <span>Pathirapally P O, Alappuzha - 688521, Kerala</span>
           </div>
         </div>
       </footer>

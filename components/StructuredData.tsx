@@ -15,9 +15,12 @@ export function StructuredData() {
     description:
       'Non-medical personal elder care assistance and companionship services in Alappuzha, Kerala.',
     telephone: '+918301016493',
+    email: 'oppamcare@gmail.com',
     address: {
       '@type': 'PostalAddress',
+      streetAddress: 'Pathirapally P O',
       addressLocality: 'Alappuzha',
+      postalCode: '688521',
       addressRegion: 'Kerala',
       addressCountry: 'IN',
     },
@@ -35,6 +38,7 @@ export function StructuredData() {
     url: baseUrl,
     image: `${baseUrl}/oppam-care-family.png`,
     telephone: '+918301016493',
+    email: 'oppamcare@gmail.com',
     priceRange: '₹₹',
     areaServed: {
       '@type': 'AdministrativeArea',
@@ -46,7 +50,9 @@ export function StructuredData() {
     },
     address: {
       '@type': 'PostalAddress',
+      streetAddress: 'Pathirapally P O',
       addressLocality: 'Alappuzha',
+      postalCode: '688521',
       addressRegion: 'Kerala',
       addressCountry: 'IN',
     },

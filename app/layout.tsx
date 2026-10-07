@@ -88,6 +88,9 @@ export const metadata: Metadata = {
       'Trusted elder care assistance and companionship in Alappuzha, Kerala — when you cannot be there in person.',
     images: ['https://oppamcare.com/oppam-care-family.png'],
   },
+  verification: {
+    google: 'googlecec2d0a19e3cd643',
+  },
   icons: {
     icon: [
       {

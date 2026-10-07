@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
+import { InitialLoader } from '@/components/InitialLoader'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -56,6 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${plusJakartaSans.variable} scroll-smooth`}>
       <body className={`${plusJakartaSans.className} antialiased bg-[#F8F6EE] text-[#123D32] selection:bg-[#8DBB4D]/30 selection:text-[#075C42]`}>
+        <InitialLoader />
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

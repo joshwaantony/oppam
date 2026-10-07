@@ -54,6 +54,34 @@
   }
 }
 
+@keyframes loadingBar {
+  0% {
+    transform: scaleX(0);
+  }
+  50% {
+    transform: scaleX(0.65);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes drawHeart {
+  0% {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
 html, body {
   overflow-x: hidden;
   max-width: 100%;

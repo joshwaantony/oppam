@@ -79,6 +79,12 @@ export const metadata: Metadata = {
         height: 630,
         alt: 'Oppam Care elder care assistance and companionship in Alappuzha, Kerala',
       },
+      {
+        url: 'https://oppamcare.com/oppam-care-logo.png',
+        width: 512,
+        height: 512,
+        alt: 'Oppam Care Logo',
+      },
     ],
   },
   twitter: {
@@ -86,7 +92,10 @@ export const metadata: Metadata = {
     title: 'Oppam Care | Elder Care Assistance in Alappuzha, Kerala',
     description:
       'Trusted elder care assistance and companionship in Alappuzha, Kerala — when you cannot be there in person.',
-    images: ['https://oppamcare.com/oppam-care-family.png'],
+    images: [
+      'https://oppamcare.com/oppam-care-family.png',
+      'https://oppamcare.com/oppam-care-logo.png',
+    ],
   },
   verification: {
     google: 'googlecec2d0a19e3cd643',
@@ -98,18 +107,39 @@ export const metadata: Metadata = {
         sizes: 'any',
       },
       {
+        url: '/icon-light-32x32.png',
+        sizes: '32x32',
+        type: 'image/png',
+      },
+      {
+        url: '/icon-dark-32x32.png',
+        sizes: '32x32',
+        type: 'image/png',
+        media: '(prefers-color-scheme: dark)',
+      },
+      {
         url: '/icon.png',
         type: 'image/png',
         sizes: '192x192',
       },
       {
-        url: '/icon-light-32x32.png',
-        sizes: '32x32',
+        url: '/icon-512.png',
+        type: 'image/png',
+        sizes: '512x512',
+      },
+      {
+        url: '/oppam-care-logo.png',
         type: 'image/png',
       },
     ],
-    shortcut: '/favicon.ico',
-    apple: '/apple-icon.png',
+    shortcut: ['/favicon.ico'],
+    apple: [
+      {
+        url: '/apple-icon.png',
+        sizes: '180x180',
+        type: 'image/png',
+      },
+    ],
   },
 }
 

@@ -25,7 +25,7 @@ export function StructuredData() {
       addressCountry: 'IN',
     },
     sameAs: [
-      'https://www.instagram.com/oppam.2026',
+      'https://www.instagram.com/oppamcare',
       'https://www.facebook.com/share/1CCMqoyrcb/',
     ],
   }

@@ -358,7 +358,7 @@ export default function Page() {
                 <WhatsAppIcon size={20} />
               </a>
               <a
-                href="https://www.instagram.com/oppam.2026?stkn=MXczYmhucTc3ZWp6OQ=="
+                href="https://www.instagram.com/oppamcare?dlrf=MW45YnIza2k3MWRtdA=="
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on Instagram"

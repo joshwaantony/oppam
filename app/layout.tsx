@@ -155,6 +155,8 @@ export const viewport: Viewport = {
   ],
 }
 
+import { LanguageProvider } from '@/context/LanguageContext'
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -166,11 +168,14 @@ export default function RootLayout({
         <StructuredData />
       </head>
       <body className={`${plusJakartaSans.className} antialiased bg-[#F8F6EE] text-[#123D32] selection:bg-[#8DBB4D]/30 selection:text-[#075C42]`}>
-        <InitialLoader />
-        {children}
+        <LanguageProvider>
+          <InitialLoader />
+          {children}
+        </LanguageProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )
 }
+
 

@@ -5,6 +5,8 @@ import { HandDrawnHeart, HandDrawnUnderline } from './hero/HandDrawnDetails'
 import { BenefitPills } from './hero/BenefitPills'
 import { OrganicHeroArtwork } from './hero/OrganicHeroArtwork'
 import { TopRightLeaves, ForegroundBokehLeaves } from './hero/DecorativeLeaves'
+import { useLanguage } from '@/context/LanguageContext'
+import { translations } from '@/lib/translations'
 
 interface HeroSectionProps {
   /**
@@ -16,6 +18,9 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ headlineVariant = 'home' }: HeroSectionProps) {
+  const { language } = useLanguage()
+  const t = translations[language].hero
+
   return (
     <section
       id="top"
@@ -49,19 +54,19 @@ export function HeroSection({ headlineVariant = 'home' }: HeroSectionProps) {
             <div className="flex items-center gap-2.5 sm:gap-3">
               <span className="h-[1.5px] w-8 sm:w-11 bg-[#C58A3E]" aria-hidden="true" />
               <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#C58A3E] sm:text-xs lg:text-[13px]">
-                ELDER CARE ASSISTANCE · ALAPPUZHA
+                {t.tag}
               </span>
             </div>
 
             {/* 2. MAIN HEADLINE: Bold 3-line headline with hand-drawn details */}
-            <h1 className="mt-3.5 text-[2.5rem] font-extrabold leading-[1.02] tracking-[-0.035em] xs:text-[2.85rem] sm:mt-6 sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5.25rem]">
+            <h1 className="mt-3.5 text-[2.5rem] font-extrabold leading-[1.05] tracking-[-0.035em] xs:text-[2.85rem] sm:mt-6 sm:text-6xl md:text-7xl lg:text-[4.3rem] xl:text-[5rem]">
               {headlineVariant === 'home' ? (
                 <>
-                  <span className="block text-[#134E39]">Care</span>
-                  <span className="block text-[#134E39]">that feels</span>
+                  <span className="block text-[#134E39]">{t.care}</span>
+                  <span className="block text-[#134E39]">{t.thatFeels}</span>
                   <span className="relative mt-0.5 sm:mt-1 inline-flex items-baseline text-[#6FA63A]">
                     <span className="relative inline-block">
-                      like home.
+                      {t.likeHome}
                       {/* Hand-drawn curved underline brush stroke */}
                       <span className="absolute -bottom-2 left-0 w-full sm:-bottom-3">
                         <HandDrawnUnderline />
@@ -73,11 +78,11 @@ export function HeroSection({ headlineVariant = 'home' }: HeroSectionProps) {
                 </>
               ) : (
                 <>
-                  <span className="block text-[#134E39]">Care</span>
-                  <span className="block text-[#6FA63A]">beyond</span>
+                  <span className="block text-[#134E39]">{t.care}</span>
+                  <span className="block text-[#6FA63A]">{t.beyond}</span>
                   <span className="relative mt-0.5 sm:mt-1 inline-flex items-baseline text-[#134E39]">
                     <span className="relative inline-block">
-                      distance.
+                      {t.distance}
                       <span className="absolute -bottom-2 left-0 w-full sm:-bottom-3">
                         <HandDrawnUnderline />
                       </span>
@@ -90,8 +95,8 @@ export function HeroSection({ headlineVariant = 'home' }: HeroSectionProps) {
 
             {/* 3. SUBTITLE: Compassionate support for your loved ones... */}
             <p className="mt-3.5 max-w-sm text-[13.5px] leading-relaxed text-[#4A5A50] xs:text-sm sm:mt-6 sm:max-w-md sm:text-base lg:text-[1.125rem]">
-              Compassionate support for your loved ones,<br className="hidden sm:inline" />
-              right here in Alappuzha.
+              {t.subtitlePart1}<br className="hidden sm:inline" />{' '}
+              {t.subtitlePart2}
             </p>
 
             {/* 4. THREE BENEFIT BADGES: DESKTOP ONLY (Below subtitle) */}
@@ -100,6 +105,7 @@ export function HeroSection({ headlineVariant = 'home' }: HeroSectionProps) {
             </div>
 
           </div>
+
 
           {/* ========================================================
               RIGHT COLUMN: Coded Organic Pebble Frame Artwork & Mobile Badges

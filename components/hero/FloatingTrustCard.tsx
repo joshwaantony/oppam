@@ -1,6 +1,13 @@
+'use client'
+
 import React from 'react'
+import { useLanguage } from '@/context/LanguageContext'
+import { translations } from '@/lib/translations'
 
 export function FloatingTrustCard({ className = '' }: { className?: string }) {
+  const { language } = useLanguage()
+  const t = translations[language].hero
+
   return (
     <div
       className={`animate-[float-subtle_5s_ease-in-out_infinite] z-20 flex flex-col items-start rounded-2xl bg-white p-4 shadow-[0_16px_38px_rgba(7,92,66,0.14)] ring-1 ring-[#075C42]/5 transition-all duration-300 hover:shadow-[0_20px_45px_rgba(7,92,66,0.2)] sm:p-5 ${className}`}
@@ -34,9 +41,8 @@ export function FloatingTrustCard({ className = '' }: { className?: string }) {
 
       {/* Typography */}
       <div className="mt-3 text-left">
-        <p className="text-xs font-bold leading-snug tracking-tight text-[#075C42] sm:text-sm">
-          A trusted <br />
-          local presence
+        <p className="text-xs font-bold leading-snug tracking-tight text-[#075C42] sm:text-sm whitespace-pre-line">
+          {t.trustBadge}
         </p>
       </div>
 
@@ -45,3 +51,4 @@ export function FloatingTrustCard({ className = '' }: { className?: string }) {
     </div>
   )
 }
+

@@ -58,7 +58,24 @@ export function StructuredData() {
     },
     description:
       'Oppam Care provides non-medical personal elder care assistance, hospital accompaniment, doctor visit coordination, and companionship for senior citizens in Alappuzha, Kerala.',
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: [
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday',
+          'Sunday',
+        ],
+        opens: '08:00',
+        closes: '20:00',
+      },
+    ],
   }
+
 
   const webSiteSchema = {
     '@context': 'https://schema.org',

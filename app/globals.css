@@ -252,3 +252,422 @@ body[data-drawer-open="true"] #floating-whatsapp {
   pointer-events: none !important;
   transform: translateY(2rem) scale(0.9) !important;
 }
+
+/* =====================================================================
+   MOTION LAYER
+   Purely additive animation styles driven by data-* attributes and
+   components/motion/MotionController.tsx. Nothing here changes layout,
+   colour or typography: only opacity / transform / clip-path / filter
+   during motion. Hidden states apply only once JS has mounted
+   (html.motion-ready) and never under prefers-reduced-motion.
+   ===================================================================== */
+
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+  --reveal-duration: 1s;
+  --reveal-distance: 34px;
+  --reveal-blur: 8px;
+  --stagger-step: 90ms;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --reveal-duration: 0.8s;
+    --reveal-distance: 22px;
+    --reveal-blur: 0px; /* skip blur on phones for smoother scrolling */
+    --stagger-step: 70ms;
+  }
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--reveal-distance), 0);
+    filter: blur(var(--reveal-blur));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes reveal-down {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes reveal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes reveal-left {
+  from {
+    opacity: 0;
+    transform: translate3d(calc(var(--reveal-distance) * -1.2), 0, 0);
+    filter: blur(var(--reveal-blur));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes reveal-right {
+  from {
+    opacity: 0;
+    transform: translate3d(calc(var(--reveal-distance) * 1.2), 0, 0);
+    filter: blur(var(--reveal-blur));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes reveal-scale {
+  from {
+    opacity: 0;
+    transform: translate3d(0, calc(var(--reveal-distance) * 0.6), 0) scale(0.96);
+    filter: blur(var(--reveal-blur));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+/* Masked line rise for headings */
+@keyframes reveal-heading {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.45em, 0);
+    clip-path: inset(0 0 100% 0);
+    filter: blur(calc(var(--reveal-blur) * 0.6));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(-25% -6% -30% -6%);
+    filter: blur(0);
+  }
+}
+
+/* Organic iris reveal for the hero artwork */
+@keyframes reveal-art {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+    clip-path: circle(18% at 58% 50%);
+  }
+  40% { opacity: 1; }
+  to {
+    opacity: 1;
+    transform: none;
+    clip-path: circle(120% at 58% 50%);
+  }
+}
+
+/* Curtain reveal for framed photos */
+@keyframes reveal-image {
+  from {
+    opacity: 0;
+    clip-path: inset(14% 10% 14% 10% round 2.2rem);
+  }
+  30% { opacity: 1; }
+  to {
+    opacity: 1;
+    clip-path: inset(0 round 2.2rem);
+  }
+}
+
+@keyframes image-settle {
+  from { transform: scale(1.14); }
+  to { transform: none; }
+}
+
+@keyframes draw-stroke {
+  from { stroke-dashoffset: var(--dash, 300); }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes heart-beat {
+  0%, 100% { transform: none; }
+  30% { transform: scale(1.16); }
+  55% { transform: scale(0.96); }
+}
+
+@keyframes line-sweep {
+  0% { transform: scaleX(0); opacity: 1; }
+  65% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0; }
+}
+
+@keyframes ambient-breathe {
+  0%, 100% { transform: scale(1) translate3d(0, 0, 0); }
+  50% { transform: scale(1.08) translate3d(-2%, 2%, 0); }
+}
+
+@keyframes ambient-sway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-2.2deg); }
+}
+
+@keyframes ambient-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(-6px, -8px, 0) rotate(1.5deg); }
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0) scale(0.97);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes drawer-item-in {
+  from {
+    opacity: 0;
+    transform: translate3d(22px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* ---------- Hidden (pre-reveal) states ---------- */
+  .motion-ready [data-reveal]:not([data-inview]),
+  .motion-ready [data-reveal-stagger]:not([data-inview]) > * {
+    opacity: 0;
+  }
+
+  /* ---------- Scroll reveals ---------- */
+  .motion-ready [data-reveal][data-inview] {
+    animation: reveal-up var(--reveal-duration) var(--ease-out-expo) var(--rd, 0ms) backwards;
+  }
+  .motion-ready [data-reveal='down'][data-inview] {
+    animation-name: reveal-down;
+    animation-duration: 0.9s;
+  }
+  .motion-ready [data-reveal='fade'][data-inview] { animation-name: reveal-fade; }
+  .motion-ready [data-reveal='left'][data-inview] { animation-name: reveal-left; }
+  .motion-ready [data-reveal='right'][data-inview] { animation-name: reveal-right; }
+  .motion-ready [data-reveal='scale'][data-inview] { animation-name: reveal-scale; }
+  .motion-ready [data-reveal='heading'][data-inview] {
+    animation-name: reveal-heading;
+    animation-duration: calc(var(--reveal-duration) * 1.15);
+  }
+  .motion-ready [data-reveal='art'][data-inview] {
+    animation-name: reveal-art;
+    animation-duration: 1.6s;
+  }
+  .motion-ready [data-reveal='image'][data-inview] {
+    animation-name: reveal-image;
+    animation-duration: 1.4s;
+  }
+  .motion-ready [data-reveal='image'][data-inview] img {
+    animation: image-settle 2s var(--ease-out-expo) var(--rd, 0ms) backwards;
+  }
+
+  /* ---------- Staggered children ---------- */
+  .motion-ready [data-reveal-stagger][data-inview] > * {
+    animation: reveal-up var(--reveal-duration) var(--ease-out-expo)
+      calc(var(--stagger-base, 0ms) + var(--i, 0) * var(--stagger-step)) backwards;
+  }
+  .motion-ready [data-reveal-stagger='scale'][data-inview] > * { animation-name: reveal-scale; }
+  .motion-ready [data-reveal-stagger='left'][data-inview] > * { animation-name: reveal-left; }
+  .motion-ready [data-reveal-stagger='fade'][data-inview] > * {
+    animation-name: reveal-fade;
+    animation-duration: 0.8s;
+    --stagger-step: 60ms;
+  }
+  .motion-ready [data-reveal-stagger='heading'][data-inview] > * {
+    animation-name: reveal-heading;
+    animation-duration: calc(var(--reveal-duration) * 1.15);
+    --stagger-step: 130ms;
+  }
+  [data-reveal-stagger] > :nth-child(2) { --i: 1; }
+  [data-reveal-stagger] > :nth-child(3) { --i: 2; }
+  [data-reveal-stagger] > :nth-child(4) { --i: 3; }
+  [data-reveal-stagger] > :nth-child(5) { --i: 4; }
+  [data-reveal-stagger] > :nth-child(6) { --i: 5; }
+  [data-reveal-stagger] > :nth-child(7) { --i: 6; }
+  [data-reveal-stagger] > :nth-child(n + 8) { --i: 7; }
+
+  /* ---------- Hero: hand-drawn underline & heart ---------- */
+  .motion-ready [data-reveal-stagger][data-inview] [data-draw] path {
+    stroke-dasharray: var(--dash, 300);
+    animation: draw-stroke 1.1s var(--ease-in-out-soft) var(--draw-delay, 0ms) backwards;
+  }
+  [data-draw='underline'] { --dash: 300; --draw-delay: calc(var(--stagger-base, 0ms) + 750ms); }
+  [data-draw='heart'] { --dash: 110; --draw-delay: calc(var(--stagger-base, 0ms) + 1150ms); }
+  .motion-ready [data-reveal-stagger][data-inview] [data-draw='heart'] {
+    transform-origin: 50% 60%;
+    animation: heart-beat 0.9s var(--ease-out-quint) calc(var(--stagger-base, 0ms) + 2250ms) 1 both;
+  }
+
+  /* ---------- Process steps: gold light sweeping across the divider ---------- */
+  [data-line-sweep] > * { position: relative; }
+  [data-line-sweep] > *::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -1px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(219, 197, 122, 0), #dbc57a 70%, rgba(255, 244, 205, 0.9));
+    box-shadow: 0 0 12px rgba(219, 197, 122, 0.55);
+    transform-origin: left center;
+    transform: scaleX(0);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .motion-ready [data-line-sweep][data-inview] > *::before {
+    animation: line-sweep 1.6s var(--ease-out-expo) calc(200ms + var(--i, 0) * 140ms) both;
+  }
+
+  /* ---------- Ambient, always-on (very subtle) ---------- */
+  .motion-ready [data-ambient='sway'] {
+    transform-origin: 100% 0%;
+    animation: ambient-sway 9s var(--ease-in-out-soft) infinite;
+  }
+  .motion-ready [data-ambient='drift'] {
+    animation: ambient-drift 12s var(--ease-in-out-soft) infinite;
+  }
+
+  /* ---------- FAQ accordion panels & modal ---------- */
+  .motion-ready [data-accordion-panel] {
+    animation: panel-in 0.45s var(--ease-out-quint) backwards;
+  }
+  .motion-ready [data-accordion-panel] li {
+    animation: panel-in 0.5s var(--ease-out-quint) backwards;
+  }
+  .motion-ready [data-accordion-panel] li:nth-child(2) { animation-delay: 50ms; }
+  .motion-ready [data-accordion-panel] li:nth-child(3) { animation-delay: 100ms; }
+  .motion-ready [data-accordion-panel] li:nth-child(4) { animation-delay: 150ms; }
+  .motion-ready [data-accordion-panel] li:nth-child(n + 5) { animation-delay: 200ms; }
+
+  .motion-ready [data-modal-backdrop] {
+    animation: reveal-fade 0.35s ease-out backwards;
+  }
+  .motion-ready [data-modal-panel] {
+    animation: modal-in 0.55s var(--ease-out-expo) backwards;
+  }
+
+  /* ---------- Mobile drawer: links cascade in on open ---------- */
+  body[data-drawer-open='true'] [data-drawer-stagger] > * {
+    animation: drawer-item-in 0.55s var(--ease-out-expo) calc(90ms + var(--i, 0) * 45ms) backwards;
+  }
+  [data-drawer-stagger] > :nth-child(2) { --i: 1; }
+  [data-drawer-stagger] > :nth-child(3) { --i: 2; }
+  [data-drawer-stagger] > :nth-child(4) { --i: 3; }
+  [data-drawer-stagger] > :nth-child(5) { --i: 4; }
+  [data-drawer-stagger] > :nth-child(6) { --i: 5; }
+  [data-drawer-stagger] > :nth-child(7) { --i: 6; }
+  [data-drawer-stagger] > :nth-child(n + 8) { --i: 7; }
+
+  /* ---------- Buttons: light sheen sweep on hover ---------- */
+  [data-shine] {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  [data-shine]::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.26) 48%, rgba(255, 255, 255, 0.08) 56%, transparent 70%);
+    transform: translateX(-130%);
+    pointer-events: none;
+  }
+  [data-shine] svg.lucide-arrow-right {
+    transition: transform 0.45s var(--ease-out-quint);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    [data-shine]:hover::after {
+      transform: translateX(130%);
+      transition: transform 0.95s var(--ease-out-quint);
+    }
+    [data-shine]:hover svg.lucide-arrow-right {
+      transform: translateX(3px);
+    }
+
+    /* Magnetic elements ease back smoothly */
+    [data-magnetic] {
+      transition-property: color, background-color, border-color, box-shadow, opacity, translate, scale, transform;
+      transition-timing-function: var(--ease-out-quint);
+    }
+
+    /* ---------- Cards: cursor-following spotlight ---------- */
+    [data-spotlight] {
+      position: relative;
+      isolation: isolate;
+    }
+    [data-spotlight]::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      background: radial-gradient(
+        260px circle at var(--spot-x, 50%) var(--spot-y, 0%),
+        rgba(141, 187, 77, 0.14),
+        transparent 70%
+      );
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+    [data-spotlight]:hover::before { opacity: 1; }
+    [data-spotlight] > :first-child {
+      transition-property: color, background-color, transform, box-shadow;
+      transition-duration: 0.45s;
+      transition-timing-function: var(--ease-out-quint);
+    }
+    [data-spotlight]:hover > :first-child {
+      transform: translateY(-2px) rotate(-6deg);
+      box-shadow: 0 10px 22px rgba(7, 92, 66, 0.22);
+    }
+  }
+
+  /* Heavier ambient motion only on large screens */
+  @media (min-width: 1024px) {
+    .motion-ready [data-ambient='aura'] {
+      animation: ambient-breathe 14s var(--ease-in-out-soft) infinite;
+    }
+  }
+}

@@ -4,6 +4,7 @@ import { Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 import { InitialLoader } from '@/components/InitialLoader'
 import { StructuredData } from '@/components/StructuredData'
+import { MotionController } from '@/components/motion/MotionController'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -170,6 +171,7 @@ export default function RootLayout({
       <body className={`${plusJakartaSans.className} antialiased bg-[#F8F6EE] text-[#123D32] selection:bg-[#8DBB4D]/30 selection:text-[#075C42]`}>
         <LanguageProvider>
           <InitialLoader />
+          <MotionController />
           {children}
         </LanguageProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}

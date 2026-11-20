@@ -33,6 +33,10 @@ export function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
+      data-magnetic
+      data-reveal="scale"
+      data-reveal-on="load"
+      style={{ '--rd': '1400ms' } as React.CSSProperties}
       tabIndex={isDrawerOpen ? -1 : 0}
       className={`fixed bottom-6 right-6 z-30 flex items-center gap-2.5 rounded-full bg-[#25D366] px-5 py-3.5 text-sm font-semibold text-[#063E23] shadow-[0_10px_25px_rgba(37,211,102,0.38)] backdrop-blur-xs transition-all duration-300 hover:-translate-y-1 hover:bg-[#20BE5B] hover:shadow-[0_16px_35px_rgba(37,211,102,0.5)] ${
         isDrawerOpen

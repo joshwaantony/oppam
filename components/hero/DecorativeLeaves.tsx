@@ -9,6 +9,7 @@ export function TopRightLeaves({ className = '' }: { className?: string }) {
     <div
       className={`pointer-events-none absolute right-0 z-20 select-none overflow-visible ${className}`}
       aria-hidden="true"
+      data-parallax="0.06"
     >
       <svg
         width="220"
@@ -17,6 +18,7 @@ export function TopRightLeaves({ className = '' }: { className?: string }) {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="w-28 h-28 xs:w-32 xs:h-32 sm:w-44 sm:h-44 md:w-56 md:h-56 drop-shadow-[0_4px_12px_rgba(18,78,57,0.08)]"
+        data-ambient="sway"
       >
         <defs>
           <linearGradient id="leafGradTop1" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -153,6 +155,7 @@ export function ForegroundBokehLeaves({ className = '' }: { className?: string }
     >
       <div className="relative -bottom-6 -right-6 h-48 w-48 opacity-80 blur-[8px] sm:h-72 sm:w-72 sm:blur-[10px] md:h-88 md:w-88 md:blur-[12px] lg:h-96 lg:w-96">
         <svg
+          data-ambient="drift"
           viewBox="0 0 300 300"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

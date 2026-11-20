@@ -16,7 +16,12 @@ export function InitialLoader() {
     // Step 3: Logo settles & Tagline fades in (2200ms)
     const t3 = setTimeout(() => setStep(3), 2200)
     // Step 4: Smooth Fade Out to homepage (3500ms)
-    const t4 = setTimeout(() => setFadeOut(true), 3500)
+    const t4 = setTimeout(() => {
+      setFadeOut(true)
+      // Let the page's entrance choreography begin as the loader dissolves
+      document.documentElement.dataset.introDone = 'true'
+      window.dispatchEvent(new Event('oppam:intro-done'))
+    }, 3500)
     // Step 5: Complete Unmount (4200ms)
     const t5 = setTimeout(() => setMounted(false), 4200)
 
@@ -38,6 +43,7 @@ export function InitialLoader() {
       }`}
       aria-label="Loading Oppam Care"
       role="status"
+      data-intro-loader
     >
       {/* Background: Subtle Kerala Greenery & Soft Glowing Aura */}
       <div className="pointer-events-none absolute h-[600px] w-[600px] rounded-full bg-[#E5F2E3]/80 blur-[130px] animate-pulse" />

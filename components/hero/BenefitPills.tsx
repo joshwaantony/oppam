@@ -9,7 +9,7 @@ export function BenefitPills({ className = '' }: { className?: string }) {
   const t = translations[language].hero
 
   return (
-    <div className={`flex items-start justify-center gap-2 xs:gap-3 sm:gap-5 lg:gap-6 ${className}`}>
+    <div className={`flex items-start justify-center gap-2 xs:gap-3 sm:gap-5 lg:gap-6 ${className}`} data-reveal-stagger="scale">
       {/* 1. Safe & Comfortable Care */}
       <div className="flex flex-1 max-w-[108px] sm:max-w-[125px] flex-col items-center text-center">
         <div className="flex size-10 items-center justify-center rounded-full bg-[#DFEFE1] text-[#124E39] shadow-xs sm:size-11">

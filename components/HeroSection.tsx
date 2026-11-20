@@ -30,10 +30,14 @@ export function HeroSection({ headlineVariant = 'home' }: HeroSectionProps) {
       <div
         className="pointer-events-none absolute -right-20 -top-20 h-[480px] w-[480px] rounded-full bg-[#E5F2E3]/70 blur-[90px] lg:h-[640px] lg:w-[640px] lg:blur-[110px]"
         aria-hidden="true"
+        data-ambient="aura"
+        data-parallax="0.12"
       />
       <div
         className="pointer-events-none absolute bottom-0 left-4 h-[240px] w-[240px] rounded-full bg-[#EEF6EC]/60 blur-[70px] lg:left-10 lg:h-[360px] lg:w-[360px] lg:blur-[90px]"
         aria-hidden="true"
+        data-ambient="aura"
+        data-parallax="-0.08"
       />
 
       {/* Top-Right Leaves: Enters from the right edge in mobile and top-right in desktop */}
@@ -51,7 +55,7 @@ export function HeroSection({ headlineVariant = 'home' }: HeroSectionProps) {
           <div className="relative z-10 flex min-w-0 flex-col items-start pt-1 sm:pt-2 lg:pt-0">
             
             {/* 1. TOP LABEL: Gold line + ELDER CARE ASSISTANCE · ALAPPUZHA */}
-            <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="flex items-center gap-2.5 sm:gap-3" data-reveal="left">
               <span className="h-[1.5px] w-8 sm:w-11 bg-[#C58A3E]" aria-hidden="true" />
               <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#C58A3E] sm:text-xs lg:text-[13px]">
                 {t.tag}
@@ -59,7 +63,11 @@ export function HeroSection({ headlineVariant = 'home' }: HeroSectionProps) {
             </div>
 
             {/* 2. MAIN HEADLINE: Bold 3-line headline with hand-drawn details */}
-            <h1 className="mt-3.5 text-[2.5rem] font-extrabold leading-[1.05] tracking-[-0.035em] xs:text-[2.85rem] sm:mt-6 sm:text-6xl md:text-7xl lg:text-[4.3rem] xl:text-[5rem]">
+            <h1
+              className="mt-3.5 text-[2.5rem] font-extrabold leading-[1.05] tracking-[-0.035em] xs:text-[2.85rem] sm:mt-6 sm:text-6xl md:text-7xl lg:text-[4.3rem] xl:text-[5rem]"
+              data-reveal-stagger="heading"
+              style={{ '--stagger-base': '120ms' } as React.CSSProperties}
+            >
               {headlineVariant === 'home' ? (
                 <>
                   <span className="block text-[#134E39]">{t.care}</span>
@@ -94,13 +102,17 @@ export function HeroSection({ headlineVariant = 'home' }: HeroSectionProps) {
             </h1>
 
             {/* 3. SUBTITLE: Compassionate support for your loved ones... */}
-            <p className="mt-3.5 max-w-sm text-[13.5px] leading-relaxed text-[#4A5A50] xs:text-sm sm:mt-6 sm:max-w-md sm:text-base lg:text-[1.125rem]">
+            <p
+              className="mt-3.5 max-w-sm text-[13.5px] leading-relaxed text-[#4A5A50] xs:text-sm sm:mt-6 sm:max-w-md sm:text-base lg:text-[1.125rem]"
+              data-reveal
+              style={{ '--rd': '520ms' } as React.CSSProperties}
+            >
               {t.subtitlePart1}<br className="hidden sm:inline" />{' '}
               {t.subtitlePart2}
             </p>
 
             {/* 4. THREE BENEFIT BADGES: DESKTOP ONLY (Below subtitle) */}
-            <div className="hidden lg:block mt-10 xl:mt-12">
+            <div className="hidden lg:block mt-10 xl:mt-12" style={{ '--stagger-base': '760ms' } as React.CSSProperties}>
               <BenefitPills />
             </div>
 
@@ -112,12 +124,19 @@ export function HeroSection({ headlineVariant = 'home' }: HeroSectionProps) {
              ======================================================== */}
           <div className="w-full min-w-0 flex flex-col items-center">
             {/* The Photo Artwork (Centered) */}
-            <div className="w-full mt-2 sm:mt-4 lg:mt-0">
+            <div
+              className="w-full mt-2 sm:mt-4 lg:mt-0"
+              data-reveal="art"
+              style={{ '--rd': '260ms' } as React.CSSProperties}
+            >
               <OrganicHeroArtwork />
             </div>
 
             {/* 5. THREE BENEFIT BADGES: MOBILE ONLY (Below Photo Artwork) */}
-            <div className="mt-6 sm:mt-8 flex justify-center w-full max-w-[340px] xs:max-w-[360px] mx-auto lg:hidden">
+            <div
+              className="mt-6 sm:mt-8 flex justify-center w-full max-w-[340px] xs:max-w-[360px] mx-auto lg:hidden"
+              style={{ '--stagger-base': '600ms' } as React.CSSProperties}
+            >
               <BenefitPills />
             </div>
           </div>

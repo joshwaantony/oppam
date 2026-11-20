@@ -36,15 +36,16 @@ export default function TermsPage() {
 
       {/* Hero Banner */}
       <section className="relative overflow-hidden border-b border-[#DCE7D8] bg-[#EAF3E6] py-12 lg:py-16">
-        <div className="pointer-events-none absolute -right-20 -top-20 h-96 w-96 rounded-full bg-[#DCEBD5] blur-3xl opacity-70" aria-hidden="true" />
+        <div className="pointer-events-none absolute -right-20 -top-20 h-96 w-96 rounded-full bg-[#DCEBD5] blur-3xl opacity-70" aria-hidden="true" data-ambient="aura" />
         <div className="relative mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-10">
           <a
             href="/"
+            data-reveal="left"
             className="inline-flex items-center gap-2 text-sm font-semibold text-[#075C42] transition hover:text-[#054631]"
           >
             <ArrowLeft size={16} /> Back to Home
           </a>
-          <div className="mt-6 flex flex-col gap-3">
+          <div className="mt-6 flex flex-col gap-3" data-reveal-stagger style={{ '--stagger-base': '120ms' } as React.CSSProperties}>
             <div className="flex items-center gap-2.5">
               <span className="h-[1.5px] w-8 bg-[#C58A3E]" aria-hidden="true" />
               <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#C58A3E]">
@@ -66,7 +67,7 @@ export default function TermsPage() {
 
       {/* Summary Highlight Box */}
       <section className="mx-auto max-w-[1280px] px-4 py-8 sm:px-6 lg:px-10">
-        <div className="rounded-3xl border border-[#C58A3E]/30 bg-[#FFFDF7] p-6 sm:p-8 shadow-xs">
+        <div className="rounded-3xl border border-[#C58A3E]/30 bg-[#FFFDF7] p-6 sm:p-8 shadow-xs" data-reveal="scale">
           <div className="flex items-start gap-4">
             <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-[#C58A3E]/15 text-[#C58A3E]">
               <AlertCircle size={22} />
@@ -89,7 +90,7 @@ export default function TermsPage() {
           <div className="flex flex-col gap-10 rounded-3xl border border-[#DCE7D8] bg-white p-7 sm:p-10 shadow-xs">
             
             {/* Section 1 */}
-            <article id="overview">
+            <article data-reveal id="overview">
               <h3 className="flex items-center gap-3 text-xl font-bold text-[#075C42] sm:text-2xl">
                 <span className="flex size-8 items-center justify-center rounded-xl bg-[#EAF4E8] text-sm font-bold text-[#075C42]">1</span>
                 Overview & Acceptance of Terms
@@ -105,7 +106,7 @@ export default function TermsPage() {
             <hr className="border-[#E7EBD8]" />
 
             {/* Section 2 */}
-            <article id="scope">
+            <article data-reveal id="scope">
               <h3 className="flex items-center gap-3 text-xl font-bold text-[#075C42] sm:text-2xl">
                 <span className="flex size-8 items-center justify-center rounded-xl bg-[#EAF4E8] text-sm font-bold text-[#075C42]">2</span>
                 Scope of Personal Assistance Services
@@ -137,7 +138,7 @@ export default function TermsPage() {
             <hr className="border-[#E7EBD8]" />
 
             {/* Section 3 */}
-            <article id="bookings">
+            <article data-reveal id="bookings">
               <h3 className="flex items-center gap-3 text-xl font-bold text-[#075C42] sm:text-2xl">
                 <span className="flex size-8 items-center justify-center rounded-xl bg-[#EAF4E8] text-sm font-bold text-[#075C42]">3</span>
                 Bookings, Fees & Cancellation
@@ -161,7 +162,7 @@ export default function TermsPage() {
             <hr className="border-[#E7EBD8]" />
 
             {/* Section 4 */}
-            <article id="emergency">
+            <article data-reveal id="emergency">
               <h3 className="flex items-center gap-3 text-xl font-bold text-[#075C42] sm:text-2xl">
                 <span className="flex size-8 items-center justify-center rounded-xl bg-[#EAF4E8] text-sm font-bold text-[#075C42]">4</span>
                 Emergency Protocol & Medical Decisions
@@ -182,7 +183,7 @@ export default function TermsPage() {
             <hr className="border-[#E7EBD8]" />
 
             {/* Section 5 */}
-            <article id="client-responsibilities">
+            <article data-reveal id="client-responsibilities">
               <h3 className="flex items-center gap-3 text-xl font-bold text-[#075C42] sm:text-2xl">
                 <span className="flex size-8 items-center justify-center rounded-xl bg-[#EAF4E8] text-sm font-bold text-[#075C42]">5</span>
                 Client Responsibilities & Disclosures
@@ -209,7 +210,7 @@ export default function TermsPage() {
             <hr className="border-[#E7EBD8]" />
 
             {/* Section 6 */}
-            <article id="privacy">
+            <article data-reveal id="privacy">
               <h3 className="flex items-center gap-3 text-xl font-bold text-[#075C42] sm:text-2xl">
                 <span className="flex size-8 items-center justify-center rounded-xl bg-[#EAF4E8] text-sm font-bold text-[#075C42]">6</span>
                 Privacy & Data Protection
@@ -222,7 +223,7 @@ export default function TermsPage() {
             <hr className="border-[#E7EBD8]" />
 
             {/* Section 7 */}
-            <article id="contact">
+            <article data-reveal id="contact">
               <h3 className="flex items-center gap-3 text-xl font-bold text-[#075C42] sm:text-2xl">
                 <span className="flex size-8 items-center justify-center rounded-xl bg-[#EAF4E8] text-sm font-bold text-[#075C42]">7</span>
                 Contact & Inquiries
@@ -250,7 +251,7 @@ export default function TermsPage() {
           </div>
 
           {/* Right Sticky Navigation Sidebar */}
-          <aside className="h-fit sticky top-28 hidden lg:flex flex-col gap-6">
+          <aside className="h-fit sticky top-28 hidden lg:flex flex-col gap-6" data-reveal-stagger="scale" style={{ '--stagger-base': '200ms' } as React.CSSProperties}>
             <div className="rounded-3xl border border-[#DCE7D8] bg-white p-6 shadow-xs">
               <h4 className="text-xs font-bold uppercase tracking-wider text-[#C58A3E]">Quick Navigation</h4>
               <nav className="mt-4 flex flex-col gap-2.5 text-sm font-semibold text-[#34594B]">
@@ -284,7 +285,7 @@ export default function TermsPage() {
 
       {/* Footer */}
       <footer className="bg-[#0C3528] px-6 py-14 text-white/75 lg:px-10">
-        <div className="mx-auto flex max-w-[1280px] flex-col justify-between gap-10 sm:flex-row">
+        <div className="mx-auto flex max-w-[1280px] flex-col justify-between gap-10 sm:flex-row" data-reveal-stagger>
           <div className="max-w-sm">
             <div className="mb-5 flex size-14 items-center justify-center rounded-xl bg-white p-1">
               <img
@@ -299,7 +300,7 @@ export default function TermsPage() {
               Personal assistance and companionship for elderly parents and loved ones in Alappuzha.
             </p>
             {/* Social Media Links */}
-            <div className="mt-6 flex items-center gap-3">
+            <div className="mt-6 flex items-center gap-3" data-reveal-stagger="scale" style={{ '--stagger-base': '250ms' } as React.CSSProperties}>
               <a
                 href="mailto:oppamcare@gmail.com"
                 aria-label="Send email to Oppam Care"
@@ -345,7 +346,7 @@ export default function TermsPage() {
             <a href="/#request" className="hover:text-white">Contact us</a>
           </div>
         </div>
-        <div className="mx-auto mt-12 flex max-w-[1280px] flex-col gap-3 border-t border-white/15 pt-6 text-xs sm:flex-row sm:justify-between text-white/60">
+        <div className="mx-auto mt-12 flex max-w-[1280px] flex-col gap-3 border-t border-white/15 pt-6 text-xs sm:flex-row sm:justify-between text-white/60" data-reveal="fade">
           <span>© 2026 Oppam Care. All rights reserved.</span>
           <div className="flex flex-wrap gap-x-4 gap-y-1 items-center">
             <a href="/terms" className="underline hover:text-white">Terms & Conditions</a>

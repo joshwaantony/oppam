@@ -8,6 +8,7 @@ export function HandDrawnHeart({ className = '' }: { className?: string }) {
       xmlns="http://www.w3.org/2000/svg"
       className={`inline-block shrink-0 ${className}`}
       aria-hidden="true"
+      data-draw="heart"
     >
       {/* Hand-drawn organic heart outline matching the reference image */}
       <path
@@ -31,6 +32,7 @@ export function HandDrawnUnderline({ className = '' }: { className?: string }) {
       className={`block w-full overflow-visible ${className}`}
       preserveAspectRatio="none"
       aria-hidden="true"
+      data-draw="underline"
     >
       {/* Gentle curved hand-drawn brush underline matching the reference */}
       <path

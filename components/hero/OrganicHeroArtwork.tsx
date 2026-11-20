@@ -1,12 +1,19 @@
 'use client'
 
 import React from 'react'
+import { preload } from 'react-dom'
 import {
   BotanicalContourLine,
   BottomSproutLeaves,
 } from './DecorativeLeaves'
 
+// The hero photo is the page's LCP element. It sits inside an SVG <image>, which the
+// browser's preload scanner cannot discover, so request it explicitly at high priority.
+const HERO_IMAGE_SRC = '/oppam-care-hero.webp'
+
 export function OrganicHeroArtwork() {
+  preload(HERO_IMAGE_SRC, { as: 'image', fetchPriority: 'high', type: 'image/webp' })
+
   return (
     <div className="relative mx-auto flex w-full max-w-[315px] xs:max-w-[345px] sm:max-w-[440px] lg:max-w-none items-center justify-center">
       <div className="relative w-full max-w-[315px] xs:max-w-[345px] sm:max-w-[440px] lg:max-w-[580px] xl:max-w-[640px]">
@@ -60,7 +67,7 @@ export function OrganicHeroArtwork() {
             {/* Layer 3: Clipped Photograph shifted upwards inside the frame */}
             <g clipPath="url(#heroOrganicPhotoClip)">
               <image
-                href="/oppam-care-hero.png"
+                href={HERO_IMAGE_SRC}
                 x="15"
                 y="-345"
                 width="660"

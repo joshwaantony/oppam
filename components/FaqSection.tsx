@@ -121,19 +121,31 @@ export function FaqSection() {
     <section id="faq" className="mx-auto max-w-[960px] px-6 py-14 lg:py-20">
       {/* Minimal Header */}
       <div className="text-center">
-        <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-[#C88A16]">
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-[#C88A16]" data-reveal>
           {t.tag}
         </p>
-        <h2 className="text-2xl font-bold tracking-[-0.03em] text-[#075C42] sm:text-3xl lg:text-4xl">
+        <h2
+          className="text-2xl font-bold tracking-[-0.03em] text-[#075C42] sm:text-3xl lg:text-4xl"
+          data-reveal="heading"
+          style={{ '--rd': '90ms' } as React.CSSProperties}
+        >
           {t.headline}
         </h2>
-        <p className="mx-auto mt-2 max-w-lg text-sm leading-6 text-[#4E6B5D] sm:text-base">
+        <p
+          className="mx-auto mt-2 max-w-lg text-sm leading-6 text-[#4E6B5D] sm:text-base"
+          data-reveal
+          style={{ '--rd': '200ms' } as React.CSSProperties}
+        >
           {t.description}
         </p>
       </div>
 
       {/* Clean Preview FAQ Card */}
-      <div className="mt-8 overflow-hidden rounded-3xl border border-[#DCE7D8] bg-white p-5 shadow-[0_10px_35px_rgba(7,92,66,0.05)] sm:p-7">
+      <div
+        className="mt-8 overflow-hidden rounded-3xl border border-[#DCE7D8] bg-white p-5 shadow-[0_10px_35px_rgba(7,92,66,0.05)] sm:p-7"
+        data-reveal="scale"
+        style={{ '--rd': '250ms' } as React.CSSProperties}
+      >
         {/* Card Header Bar */}
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3 border-b border-[#F0F5EE] pb-4">
           <div className="flex items-center gap-2.5">
@@ -161,7 +173,7 @@ export function FaqSection() {
         </div>
 
         {/* Top 5 Inline Accordion List */}
-        <div className="space-y-3">
+        <div className="space-y-3" data-reveal-stagger style={{ '--stagger-base': '450ms' } as React.CSSProperties}>
           {previewData.map((item) => {
             const isOpen = inlineOpenId === item.id
             const question = getItemQuestion(item)
@@ -214,7 +226,7 @@ export function FaqSection() {
                 </button>
 
                 {isOpen && (
-                  <div className="border-t border-[#F0F5EE] bg-white/80 px-4 pb-4 pt-3.5 sm:pl-14 sm:pr-6">
+                  <div className="border-t border-[#F0F5EE] bg-white/80 px-4 pb-4 pt-3.5 sm:pl-14 sm:pr-6" data-accordion-panel>
                     {paragraphs && (
                       <div className="space-y-2">
                         {paragraphs.map((p, pIdx) => (
@@ -270,6 +282,8 @@ export function FaqSection() {
           <button
             type="button"
             onClick={() => setIsModalOpen(true)}
+            data-shine
+            data-magnetic
             className="group flex items-center gap-2 rounded-full bg-[#075C42] px-6 py-3 text-xs font-bold text-white shadow-md transition duration-200 hover:bg-[#054631] hover:shadow-lg cursor-pointer shrink-0"
           >
             <span>{t.footerBannerBtn}</span>
@@ -290,10 +304,14 @@ export function FaqSection() {
           <div
             onClick={() => setIsModalOpen(false)}
             className="fixed inset-0 bg-[#06241C]/75 backdrop-blur-md transition-opacity duration-300"
+            data-modal-backdrop
           />
 
           {/* Modal Container */}
-          <div className="relative flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-[2rem] border border-[#DCE7D8] bg-white shadow-2xl transition-all duration-300">
+          <div
+            className="relative flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-[2rem] border border-[#DCE7D8] bg-white shadow-2xl transition-all duration-300"
+            data-modal-panel
+          >
             {/* Modal Top Header */}
             <div className="flex items-start justify-between border-b border-[#EAF0E8] bg-gradient-to-r from-[#F4F9F2] via-white to-[#F8FBF7] p-5 sm:p-7">
               <div className="pr-4">
@@ -475,7 +493,7 @@ export function FaqSection() {
                       </button>
 
                       {isOpen && (
-                        <div className="border-t border-[#F0F5EE] bg-white/90 px-4 pb-4 pt-3.5 sm:pl-14 sm:pr-6">
+                        <div className="border-t border-[#F0F5EE] bg-white/90 px-4 pb-4 pt-3.5 sm:pl-14 sm:pr-6" data-accordion-panel>
                           {paragraphs && (
                             <div className="space-y-2">
                               {paragraphs.map((p, pIdx) => (

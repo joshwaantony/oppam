@@ -4,6 +4,7 @@ import { Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 import { InitialLoader } from '@/components/InitialLoader'
 import { StructuredData } from '@/components/StructuredData'
+import { MotionController } from '@/components/motion/MotionController'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -61,9 +62,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  alternates: {
-    canonical: 'https://oppamcare.com/',
-  },
+  // No shared canonical here: every route defines its own (see app/page.tsx, app/terms/layout.tsx).
   openGraph: {
     title: 'Oppam Care | Elder Care Assistance in Alappuzha, Kerala',
     description:
@@ -127,10 +126,8 @@ export const metadata: Metadata = {
         type: 'image/png',
         sizes: '512x512',
       },
-      {
-        url: '/oppam-care-logo.png',
-        type: 'image/png',
-      },
+      // The 778 KB brand logo PNG is intentionally not listed as an icon: browsers were downloading it
+      // on every page. The sized icons above (32/192/512 px) cover all favicon needs.
     ],
     shortcut: ['/favicon.ico'],
     apple: [
@@ -170,6 +167,7 @@ export default function RootLayout({
       <body className={`${plusJakartaSans.className} antialiased bg-[#F8F6EE] text-[#123D32] selection:bg-[#8DBB4D]/30 selection:text-[#075C42]`}>
         <LanguageProvider>
           <InitialLoader />
+          <MotionController />
           {children}
         </LanguageProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}

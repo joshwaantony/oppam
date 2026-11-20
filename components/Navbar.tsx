@@ -14,6 +14,7 @@ import {
   Users,
   ChevronRight,
 } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 import { useLanguage } from '@/context/LanguageContext'
 import { translations } from '@/lib/translations'
 import { LanguageToggle } from '@/components/LanguageToggle'
@@ -25,8 +26,16 @@ const whatsappUrl =
 
 export function Navbar() {
   const { language } = useLanguage()
+  // Malayalam labels are much wider than English. On desktop (xl, 1280px+) they fit inline with slightly
+  // tighter padding and letter-spacing; below that there is not enough room, so Malayalam uses the drawer.
+  const isMl = language === 'ml'
+  const bp = isMl
+    ? { show: 'xl:flex', hide: 'xl:hidden', linkXl: 'xl:px-2 xl:tracking-normal', container: '', cta: 'xl:px-3.5 xl:py-2.5', navGap: '', rightGap: '' }
+    : { show: 'lg:flex', hide: 'lg:hidden', linkXl: 'xl:px-4 xl:py-2 xl:text-[13px]', container: 'xl:px-10', cta: 'xl:px-5 xl:py-2.5', navGap: 'xl:gap-2', rightGap: 'xl:gap-3' }
   const t = translations[language].nav
   const hours = translations[language].hours
+
+  const pathname = usePathname() ?? '/'
 
   const navLinks = [
     { href: '/#about', id: 'about', label: t.about, icon: Compass },
@@ -35,6 +44,12 @@ export function Navbar() {
     { href: '/#families', id: 'families', label: t.families, icon: Users },
     { href: '/#faq', id: 'faq', label: t.faq, icon: HelpCircle },
   ]
+
+  const onHomeCare = pathname.startsWith('/home-care')
+  // Home care pages have their own enquiry form
+  const requestTarget = onHomeCare ? { href: '#enquire', id: 'enquire' } : { href: '/#request', id: 'request' }
+  // Home Care lives under Services, so its pages highlight the Services link
+  const isLinkActive = (id: string) => (onHomeCare ? id === 'services' : activeSection === id)
 
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -96,7 +111,7 @@ export function Navbar() {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     setDrawerOpen(false)
-    if (typeof window !== 'undefined' && window.location.pathname === '/') {
+    if (typeof window !== 'undefined' && (window.location.pathname === '/' || targetId === 'enquire')) {
       const el = document.getElementById(targetId)
       if (el) {
         e.preventDefault()
@@ -109,18 +124,20 @@ export function Navbar() {
   return (
     <>
       <header
+        data-reveal="down"
+        data-reveal-on="load"
         className={`fixed left-0 right-0 top-0 z-40 w-full transition-all duration-300 ${
           scrolled
             ? 'border-b border-[#DCE7D8] bg-[#F8F9F3]/95 shadow-[0_4px_24px_rgba(7,92,66,0.06)] backdrop-blur-md'
             : 'border-b border-[#E7EBD8]/70 bg-[#F8F9F3]/90 backdrop-blur-md'
         }`}
       >
-        <div className="mx-auto flex h-16 sm:h-20 w-full max-w-[1280px] items-center justify-between px-4 sm:px-6 lg:px-10">
+        <div className={`mx-auto flex h-16 sm:h-20 w-full max-w-[1280px] items-center justify-between gap-3 px-4 sm:px-6 lg:px-6 ${bp.container}`}>
           {/* Oppam Care Logo on left */}
-          <a href="/#top" className="group flex items-center gap-2.5 sm:gap-3" aria-label="Oppam Care Home">
+          <a href="/#top" className="group flex shrink-0 items-center gap-2.5 sm:gap-3" aria-label="Oppam Care Home">
             <div className="flex size-10 sm:size-11 items-center justify-center rounded-xl bg-white/90 p-1 shadow-2xs ring-1 ring-[#075C42]/10 transition group-hover:scale-105">
               <img
-                src="/oppam-care-logo.png"
+                src="/oppam-care-logo-128.webp"
                 alt="Oppam Care elder care assistance logo Alappuzha"
                 className="h-full w-full object-contain"
                 width={44}
@@ -128,24 +145,26 @@ export function Navbar() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-[13px] sm:text-sm font-bold tracking-[0.14em] text-[#075C42]">OPPAM CARE</span>
+              <span className="whitespace-nowrap text-[13px] sm:text-sm font-bold tracking-[0.14em] text-[#075C42]">OPPAM CARE</span>
               <span className="text-[9.5px] sm:text-[10px] font-semibold tracking-wide text-[#7C9882]">ALAPPUZHA</span>
             </div>
           </a>
 
           {/* Desktop Navigation (>= lg screens: 1024px+) */}
           <nav
-            className="hidden items-center gap-1.5 lg:flex xl:gap-2"
+            className={`hidden items-center gap-0.5 ${bp.navGap} ${bp.show}`}
             aria-label="Main Navigation"
+            data-reveal-stagger="fade"
+            style={{ '--stagger-base': '250ms' } as React.CSSProperties}
           >
             {navLinks.map((link) => {
-              const isActive = activeSection === link.id
+              const isActive = isLinkActive(link.id)
               return (
                 <a
                   key={link.id}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.id)}
-                  className={`rounded-full px-3.5 py-1.5 text-xs font-semibold tracking-wide transition-all duration-200 xl:px-4 xl:py-2 xl:text-[13px] ${
+                  className={`whitespace-nowrap rounded-full px-2.5 py-1.5 text-xs font-semibold tracking-wide transition-all duration-200 ${bp.linkXl} ${
                     isActive
                       ? 'bg-[#EAF3E6] font-bold text-[#075C42] shadow-2xs ring-1 ring-[#075C42]/20'
                       : 'text-[#34594B] hover:bg-[#EAF3E6]/60 hover:text-[#075C42]'
@@ -158,20 +177,22 @@ export function Navbar() {
           </nav>
 
           {/* Desktop CTA & Language Switcher (>= lg screens: 1024px+) */}
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className={`hidden shrink-0 items-center gap-2 ${bp.rightGap} ${bp.show}`}>
             <LanguageToggle variant="compact" />
 
             <a
-              href="/#request"
-              onClick={(e) => handleNavClick(e, 'request')}
-              className="rounded-full bg-[#075C42] px-4 py-2 text-xs font-semibold text-white shadow-[0_8px_20px_rgba(7,92,66,0.2)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#054631] hover:shadow-[0_10px_24px_rgba(7,92,66,0.3)] xl:px-5 xl:py-2.5"
+              href={requestTarget.href}
+              onClick={(e) => handleNavClick(e, requestTarget.id)}
+              data-shine
+              data-magnetic
+              className={`whitespace-nowrap rounded-full bg-[#075C42] px-4 py-2 text-xs font-semibold text-white shadow-[0_8px_20px_rgba(7,92,66,0.2)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#054631] hover:shadow-[0_10px_24px_rgba(7,92,66,0.3)] ${bp.cta}`}
             >
               {t.requestBtn}
             </a>
           </div>
 
           {/* Controls Below LG (< 1024px): Language Switcher + App Drawer Hamburger Button */}
-          <div className="flex items-center gap-2 lg:hidden">
+          <div className={`flex items-center gap-2 ${bp.hide}`}>
             <LanguageToggle variant="compact" />
 
             <button
@@ -196,7 +217,7 @@ export function Navbar() {
       {/* Backdrop overlay */}
       <div
         onClick={() => setDrawerOpen(false)}
-        className={`fixed inset-0 z-[60] bg-[#06241C]/65 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-[60] bg-[#06241C]/65 backdrop-blur-sm transition-opacity duration-300 ${bp.hide} ${
           drawerOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         aria-hidden="true"
@@ -207,7 +228,7 @@ export function Navbar() {
         role="dialog"
         aria-modal="true"
         aria-label="Mobile Navigation Drawer"
-        className={`fixed inset-y-0 right-0 z-[70] flex w-[86vw] max-w-[360px] flex-col justify-between border-l border-[#DCE7D8] bg-[#F8F9F3] p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom,0px))] shadow-2xl transition-transform duration-300 ease-out sm:p-6 lg:hidden ${
+        className={`fixed inset-y-0 right-0 z-[70] flex w-[86vw] max-w-[360px] flex-col justify-between border-l border-[#DCE7D8] bg-[#F8F9F3] p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom,0px))] shadow-2xl transition-transform duration-300 ease-out sm:p-6 ${bp.hide} ${
           drawerOpen ? 'translate-x-0' : 'translate-x-full pointer-events-none'
         }`}
       >
@@ -216,7 +237,7 @@ export function Navbar() {
           <div className="flex items-center gap-2.5">
             <div className="flex size-9 items-center justify-center rounded-xl bg-white p-1 shadow-2xs ring-1 ring-[#075C42]/10">
               <img
-                src="/oppam-care-logo.png"
+                src="/oppam-care-logo-128.webp"
                 alt="Oppam Care logo"
                 className="h-full w-full object-contain"
                 width={36}
@@ -241,9 +262,9 @@ export function Navbar() {
         </div>
 
         {/* Drawer Navigation Links */}
-        <div className="flex-1 overflow-y-auto py-5 space-y-1.5">
+        <div className="flex-1 overflow-y-auto py-5 space-y-1.5" data-drawer-stagger>
           {navLinks.map((link) => {
-            const isActive = activeSection === link.id
+            const isActive = isLinkActive(link.id)
             const Icon = link.icon
             return (
               <a
@@ -323,8 +344,9 @@ export function Navbar() {
         {/* Drawer Bottom Action CTA */}
         <div className="shrink-0 border-t border-[#EAF0E8] pt-4">
           <a
-            href="/#request"
-            onClick={(e) => handleNavClick(e, 'request')}
+            href={requestTarget.href}
+            onClick={(e) => handleNavClick(e, requestTarget.id)}
+            data-shine
             className="flex w-full items-center justify-center gap-2 rounded-full bg-[#075C42] py-3.5 text-center text-sm font-bold text-white shadow-md transition hover:bg-[#054631] active:translate-y-0"
           >
             <span>{t.requestBtn}</span>

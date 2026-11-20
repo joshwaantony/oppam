@@ -70,8 +70,10 @@ export function HeroSection({ headlineVariant = 'home' }: HeroSectionProps) {
             >
               {headlineVariant === 'home' ? (
                 <>
-                  <span className="block text-[#134E39]">{t.care}</span>
-                  <span className="block text-[#134E39]">{t.thatFeels}</span>
+                  {/* Explicit spaces keep the heading text readable ("Care that feels like home.")
+                      for screen readers and crawlers; they collapse visually next to block lines. */}
+                  <span className="block text-[#134E39]">{t.care}</span>{' '}
+                  <span className="block text-[#134E39]">{t.thatFeels}</span>{' '}
                   <span className="relative mt-0.5 sm:mt-1 inline-flex items-baseline text-[#6FA63A]">
                     <span className="relative inline-block">
                       {t.likeHome}

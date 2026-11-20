@@ -151,7 +151,9 @@ export function InitialLoader() {
           }`}
         >
           <img
-            src="/oppam-care-logo.png"
+            src="/oppam-care-logo-384.webp"
+            srcSet="/oppam-care-logo-384.webp 384w, /oppam-care-logo-768.webp 768w"
+            sizes="(min-width: 768px) 384px, (min-width: 640px) 336px, 288px"
             alt="Oppam Care Elder Care Assistance Alappuzha"
             className="h-auto w-60 xs:w-72 sm:w-84 md:w-96 max-h-[260px] object-contain drop-shadow-[0_10px_30px_rgba(7,92,66,0.1)]"
           />

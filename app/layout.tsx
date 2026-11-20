@@ -62,9 +62,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  alternates: {
-    canonical: 'https://oppamcare.com/',
-  },
+  // No shared canonical here: every route defines its own (see app/page.tsx, app/terms/layout.tsx).
   openGraph: {
     title: 'Oppam Care | Elder Care Assistance in Alappuzha, Kerala',
     description:
@@ -128,10 +126,8 @@ export const metadata: Metadata = {
         type: 'image/png',
         sizes: '512x512',
       },
-      {
-        url: '/oppam-care-logo.png',
-        type: 'image/png',
-      },
+      // The 778 KB brand logo PNG is intentionally not listed as an icon: browsers were downloading it
+      // on every page. The sized icons above (32/192/512 px) cover all favicon needs.
     ],
     shortcut: ['/favicon.ico'],
     apple: [

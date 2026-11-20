@@ -13,7 +13,6 @@ import {
   Compass,
   Users,
   ChevronRight,
-  House,
 } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useLanguage } from '@/context/LanguageContext'
@@ -27,28 +26,30 @@ const whatsappUrl =
 
 export function Navbar() {
   const { language } = useLanguage()
-  // Malayalam labels are too wide for the inline nav inside the 1280px header, so Malayalam always uses the drawer.
+  // Malayalam labels are much wider than English. On desktop (xl, 1280px+) they fit inline with slightly
+  // tighter padding and letter-spacing; below that there is not enough room, so Malayalam uses the drawer.
   const isMl = language === 'ml'
   const bp = isMl
-    ? { show: '', hide: '', linkXl: '' }
-    : { show: 'lg:flex', hide: 'lg:hidden', linkXl: 'xl:px-4 xl:py-2 xl:text-[13px]' }
+    ? { show: 'xl:flex', hide: 'xl:hidden', linkXl: 'xl:px-2 xl:tracking-normal', container: '', cta: 'xl:px-3.5 xl:py-2.5', navGap: '', rightGap: '' }
+    : { show: 'lg:flex', hide: 'lg:hidden', linkXl: 'xl:px-4 xl:py-2 xl:text-[13px]', container: 'xl:px-10', cta: 'xl:px-5 xl:py-2.5', navGap: 'xl:gap-2', rightGap: 'xl:gap-3' }
   const t = translations[language].nav
   const hours = translations[language].hours
+
+  const pathname = usePathname() ?? '/'
 
   const navLinks = [
     { href: '/#about', id: 'about', label: t.about, icon: Compass },
     { href: '/#services', id: 'services', label: t.services, icon: Hospital },
-    { href: '/home-care', id: 'home-care', label: t.homeCare, icon: House },
     { href: '/#process', id: 'process', label: t.process, icon: HeartHandshake },
     { href: '/#families', id: 'families', label: t.families, icon: Users },
     { href: '/#faq', id: 'faq', label: t.faq, icon: HelpCircle },
   ]
 
-  const pathname = usePathname() ?? '/'
   const onHomeCare = pathname.startsWith('/home-care')
   // Home care pages have their own enquiry form
   const requestTarget = onHomeCare ? { href: '#enquire', id: 'enquire' } : { href: '/#request', id: 'request' }
-  const isLinkActive = (id: string) => (id === 'home-care' ? onHomeCare : activeSection === id)
+  // Home Care lives under Services, so its pages highlight the Services link
+  const isLinkActive = (id: string) => (onHomeCare ? id === 'services' : activeSection === id)
 
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -131,12 +132,12 @@ export function Navbar() {
             : 'border-b border-[#E7EBD8]/70 bg-[#F8F9F3]/90 backdrop-blur-md'
         }`}
       >
-        <div className="mx-auto flex h-16 sm:h-20 w-full max-w-[1280px] items-center justify-between gap-3 px-4 sm:px-6 lg:px-6 xl:px-10">
+        <div className={`mx-auto flex h-16 sm:h-20 w-full max-w-[1280px] items-center justify-between gap-3 px-4 sm:px-6 lg:px-6 ${bp.container}`}>
           {/* Oppam Care Logo on left */}
           <a href="/#top" className="group flex shrink-0 items-center gap-2.5 sm:gap-3" aria-label="Oppam Care Home">
             <div className="flex size-10 sm:size-11 items-center justify-center rounded-xl bg-white/90 p-1 shadow-2xs ring-1 ring-[#075C42]/10 transition group-hover:scale-105">
               <img
-                src="/oppam-care-logo.png"
+                src="/oppam-care-logo-128.webp"
                 alt="Oppam Care elder care assistance logo Alappuzha"
                 className="h-full w-full object-contain"
                 width={44}
@@ -151,7 +152,7 @@ export function Navbar() {
 
           {/* Desktop Navigation (>= lg screens: 1024px+) */}
           <nav
-            className={`hidden items-center gap-0.5 xl:gap-2 ${bp.show}`}
+            className={`hidden items-center gap-0.5 ${bp.navGap} ${bp.show}`}
             aria-label="Main Navigation"
             data-reveal-stagger="fade"
             style={{ '--stagger-base': '250ms' } as React.CSSProperties}
@@ -176,7 +177,7 @@ export function Navbar() {
           </nav>
 
           {/* Desktop CTA & Language Switcher (>= lg screens: 1024px+) */}
-          <div className={`hidden shrink-0 items-center gap-2 xl:gap-3 ${bp.show}`}>
+          <div className={`hidden shrink-0 items-center gap-2 ${bp.rightGap} ${bp.show}`}>
             <LanguageToggle variant="compact" />
 
             <a
@@ -184,7 +185,7 @@ export function Navbar() {
               onClick={(e) => handleNavClick(e, requestTarget.id)}
               data-shine
               data-magnetic
-              className="whitespace-nowrap rounded-full bg-[#075C42] px-4 py-2 text-xs font-semibold text-white shadow-[0_8px_20px_rgba(7,92,66,0.2)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#054631] hover:shadow-[0_10px_24px_rgba(7,92,66,0.3)] xl:px-5 xl:py-2.5"
+              className={`whitespace-nowrap rounded-full bg-[#075C42] px-4 py-2 text-xs font-semibold text-white shadow-[0_8px_20px_rgba(7,92,66,0.2)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#054631] hover:shadow-[0_10px_24px_rgba(7,92,66,0.3)] ${bp.cta}`}
             >
               {t.requestBtn}
             </a>
@@ -236,7 +237,7 @@ export function Navbar() {
           <div className="flex items-center gap-2.5">
             <div className="flex size-9 items-center justify-center rounded-xl bg-white p-1 shadow-2xs ring-1 ring-[#075C42]/10">
               <img
-                src="/oppam-care-logo.png"
+                src="/oppam-care-logo-128.webp"
                 alt="Oppam Care logo"
                 className="h-full w-full object-contain"
                 width={36}

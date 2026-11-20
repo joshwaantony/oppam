@@ -289,11 +289,13 @@ export default function TermsPage() {
           <div className="max-w-sm">
             <div className="mb-5 flex size-14 items-center justify-center rounded-xl bg-white p-1">
               <img
-                src="/oppam-care-logo.png"
+                src="/oppam-care-logo-128.webp"
                 alt="Oppam Care elder care assistance logo Alappuzha"
                 className="h-full w-full object-contain"
                 width={56}
                 height={56}
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <p className="leading-7 text-white/80">

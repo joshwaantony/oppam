@@ -14,8 +14,8 @@ export function HomeCareTeaser() {
   const isMl = language === 'ml'
 
   return (
-    <section id="home-care-preview" className="px-6 pb-20 lg:px-10 lg:pb-28">
-      <div className="mx-auto max-w-[1280px] rounded-[2.2rem] border border-[#DCE7D8] bg-[#EAF3E6] p-6 sm:p-10 lg:p-12">
+    <div id="home-care-preview" className="mt-16 lg:mt-20">
+      <div className="rounded-[2.2rem] border border-[#DCE7D8] bg-[#EAF3E6] p-6 sm:p-10 lg:p-12">
         <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <div className="max-w-2xl">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#C88A16]" data-reveal>
@@ -65,7 +65,7 @@ export function HomeCareTeaser() {
           })}
         </div>
       </div>
-    </section>
+    </div>
   )
 }
 
